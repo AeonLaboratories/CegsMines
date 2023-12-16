@@ -1,0 +1,68 @@
+﻿<v:View x:Class="Cegs12X.Views.IM"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Cegs12X.Views"
+    xmlns:wpf="clr-namespace:HACS.WPF;assembly=HACS.WPF"
+    xmlns:v="clr-namespace:HACS.WPF.Views;assembly=HACS.WPF"
+    xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=HACS.WPF"
+    mc:Ignorable="d"
+    Background="{x:Null}"
+    >
+
+	<Canvas Width="250" Height="385">
+		<!--This must be a render transform to maintain full hit test... so positioning isn't as clean as in the GM-->
+		<!--Canvas.Right=39-Width=39-22=17 Canvas.Top=6+Height=6+152=158-->
+		<local:ManifoldHalf Canvas.Right="17" Canvas.Top="158" RenderTransform="{DynamicResource Down}"
+		    Component="Section.IML_IMC" HelpText="Inlet manifold" />
+		<local:ManifoldCenter Canvas.Right="0" Canvas.Top="175" LayoutTransform="{DynamicResource Mirror}"
+            Component="Section.IM" HelpText="Inlet manifold"/>
+        <local:ManifoldHalf Canvas.Right="17" Canvas.Bottom="6" RenderTransform="{DynamicResource Mirror}"
+		    Component="Section.IMR_IMC" HelpText="Inlet manifold" />
+		
+		<v:Valve Canvas.Right="34" Canvas.Top="157"
+		    Component="vIML_IMC" HelpText="IML-IMC valve" />
+		<v:Valve Canvas.Right="34" Canvas.Bottom="157"
+		    Component="vIMR_IMC" HelpText="IMR-IMC valve" />
+
+        <Grid Canvas.Right="17.5" Canvas.Bottom="197" Background="Transparent" ClipToBounds="True" RenderTransform="{wpf:AnchorTransform BottomCenter}"
+            v:View.Component="pIM" AutomationProperties.HelpText="Inlet manifold pressure">
+            <v:PortPressureSensor IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-5"/>
+            <v:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,38" IsHitTestVisible="False"
+                Component="pIM" ContentStringFormat="0"/>
+        </Grid>
+
+        <Border Canvas.Right="81" Canvas.Top="3" Width="23" Height="67"
+            v:View.Component="IpFan1-3" AutomationProperties.HelpText="Trap fan for IP1..IP3" 
+            BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1"
+            wpf:HacsViewProperties.BackgroundResourceKey="{Binding (v:View.Component).Fan.IsOn, RelativeSource={RelativeSource Self}, Converter={x:Static c:BoolToResourceKeyConverter.Default}, FallbackValue=OffBrush}"/>
+        <local:IP Canvas.Right="60" Canvas.Top="0" Component="IP1" HelpText="Inlet port 1" />
+        <local:IP Canvas.Right="60" Canvas.Top="26" Component="IP2" HelpText="Inlet port 2" />
+        <local:IP Canvas.Right="60" Canvas.Top="52" Component="IP3" HelpText="Inlet port 3" />
+
+        <Border Canvas.Right="81" Canvas.Top="81" Width="23" Height="67"
+            v:View.Component="IpFan4-6" AutomationProperties.HelpText="Trap fan for IP4..IP6" 
+            BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1"
+            wpf:HacsViewProperties.BackgroundResourceKey="{Binding (v:View.Component).Fan.IsOn, RelativeSource={RelativeSource Self}, Converter={x:Static c:BoolToResourceKeyConverter.Default}, FallbackValue=OffBrush}"/>
+        <local:IP Canvas.Right="60" Canvas.Top="78" Component="IP4" HelpText="Inlet port 4" />
+        <local:IP Canvas.Right="60" Canvas.Top="104" Component="IP5" HelpText="Inlet port 5" />
+        <local:IP Canvas.Right="60" Canvas.Top="130" Component="IP6" HelpText="Inlet port 6" />
+
+        <Border Canvas.Right="81" Canvas.Bottom="81" Width="23" Height="67"
+            v:View.Component="IpFan7-9" AutomationProperties.HelpText="Trap fan for IP7..IP9" 
+            BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1"
+            wpf:HacsViewProperties.BackgroundResourceKey="{Binding (v:View.Component).Fan.IsOn, RelativeSource={RelativeSource Self}, Converter={x:Static c:BoolToResourceKeyConverter.Default}, FallbackValue=OffBrush}"/>
+        <local:IP Canvas.Right="60" Canvas.Bottom="130" Component="IP7" HelpText="Inlet port 7" />
+        <local:IP Canvas.Right="60" Canvas.Bottom="104" Component="IP8" HelpText="Inlet port 8" />
+        <local:IP Canvas.Right="60" Canvas.Bottom="78" Component="IP9" HelpText="Inlet port 9" />
+
+        <Border Canvas.Right="81" Canvas.Bottom="3" Width="23" Height="67"
+            v:View.Component="IpFan10-12" AutomationProperties.HelpText="Trap fan for IP10..IP12" 
+            BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1"
+            wpf:HacsViewProperties.BackgroundResourceKey="{Binding (v:View.Component).Fan.IsOn, RelativeSource={RelativeSource Self}, Converter={x:Static c:BoolToResourceKeyConverter.Default}, FallbackValue=OffBrush}"/>
+        <local:IP Canvas.Right="60" Canvas.Bottom="52" Component="IP10" HelpText="Inlet port 10" />
+        <local:IP Canvas.Right="60" Canvas.Bottom="26" Component="IP11" HelpText="Inlet port 11" />
+        <local:IP Canvas.Right="60" Canvas.Bottom="0" Component="IP12" HelpText="Inlet port 12" />
+    </Canvas>
+</v:View>

@@ -1,0 +1,15 @@
+﻿<v:View x:Class="Cegs12X.Views.ManifoldHalf"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Cegs12X.Views"
+    xmlns:v="clr-namespace:HACS.WPF.Views;assembly=HACS.WPF"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+    <Canvas Width="22" Height="152">
+        <Rectangle Canvas.Left="-12" Canvas.Top="1" Width="33" Height="164" d:Fill="#2200FFFF" Fill="Transparent"/>
+        <Path Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+			  Data="m0.5,0.5 h8 v13 h13 v8 h-13 v18 h13 v8 h-13 v18 h13 v8 h-13 v18 h13 v8 h-13 v18 h13 v8 h-13 v18 h13 v8 h-21 z" />
+    </Canvas>
+</v:View>

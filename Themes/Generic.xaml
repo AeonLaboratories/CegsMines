@@ -1,0 +1,7 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="clr-namespace:Cegs12X.Views"
+					xmlns:v="clr-namespace:HACS.WPF.Views;assembly=HACS.WPF"
+					xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=HACS.WPF">
+
+</ResourceDictionary>

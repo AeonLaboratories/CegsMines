@@ -1,0 +1,18 @@
+{
+	"Name": "CEGS AlertManager",
+	"MinutesToSuppressSameMessage": 1440,
+	"PriorAlertMessage": "",
+	"ContactInfo": {
+		"SiteName": "Your site name",
+		"PhoneNumber": "Your phone number",
+		"AlertRecipients": [
+			"YourSystemEmailAddress@aeonhacs.com // self"
+		]
+	},
+	"SmtpInfo": {
+		"Host": "mail.aeonhacs.com",
+		"Port": 465,
+		"Username": "YourSystemEmailAddress@aeonhacs.com",
+		"Password": "YourSecurePassword"
+	}
+}

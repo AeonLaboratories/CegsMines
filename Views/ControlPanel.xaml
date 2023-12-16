@@ -1,0 +1,152 @@
+﻿<v:ControlPanel x:TypeArguments="cegs:Hacs12X" x:Class="Cegs12X.Views.ControlPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:cegs="clr-namespace:Cegs12X"
+        xmlns:local="clr-namespace:Cegs12X.Views"
+        xmlns:wpf="clr-namespace:HACS.WPF;assembly=HACS.WPF"
+        xmlns:v="clr-namespace:HACS.WPF.Views;assembly=HACS.WPF"
+        xmlns:b="clr-namespace:HACS.WPF.Behaviors;assembly=HACS.WPF"
+        xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=HACS.WPF"
+        mc:Ignorable="d" 
+        d:DesignWidth="1020"
+        d:DesignHeight="550">
+
+    <v:ControlPanel.Resources>
+        <c:TimeSpanToStringConverter x:Key="TimeSpanConverter" />
+        <c:ProcessStateToVisibilityConverter x:Key="ProcessStateConverter" />
+        <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <c:ToStringConverter x:Key="ToStringConverter" />
+    </v:ControlPanel.Resources>
+
+    <!--==============================================-->
+    <!-- The display space -->
+    <!--==============================================-->
+    <Grid>
+        <!-- Simplify references to CEGS properties -->
+        <v:View x:Name="Cegs" Component="CEGS12X" Visibility="Collapsed" />
+
+        <!-- System Uptime -->
+        <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel>
+                <Label Content="System Uptime" HorizontalAlignment="Center" Padding="0" />
+                <Label x:Name="Uptime" Padding="3,0,3,0" HorizontalAlignment="Center"
+                        BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                        AutomationProperties.HelpText="System Uptime"
+                        Content="{Binding Component.Uptime, ElementName=Cegs, Converter={StaticResource TimeSpanConverter}, FallbackValue='100 23:59:59'}" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Process Control & State -->
+        <Border BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <CheckBox Content="Auto-feed samples"
+                            IsChecked="{Binding Component.AutoFeedEnabled, ElementName=Cegs}"
+                            HorizontalAlignment="Right" Margin="3" Visibility="Hidden"/>
+
+                    <!-- Process -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="ProcessTime" Margin="2,2,3,2" Padding="3,0,3,0"
+                                HorizontalContentAlignment="Right"
+                                BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                                AutomationProperties.HelpText="Process Run Time"
+                                Content="{Binding Component.ProcessTime, ElementName=Cegs, Converter={StaticResource TimeSpanConverter}, FallbackValue='23:59:59'}" />
+                        <ComboBox x:Name="ProcessSelector" Margin="0,2,3,2" Padding="3,0,3,2" Width="350"
+                                IsEditable="False" SelectedIndex="0" AutomationProperties.HelpText="Process" />
+                    </StackPanel>
+
+                    <!-- Process Step -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="ProcessStepTime" Margin="2,2,3,2" Padding="3,0,3,0"
+                                HorizontalContentAlignment="Right"
+                                BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                                AutomationProperties.HelpText="Process Step Time"
+                                Content="{Binding Component.ProcessStep.Elapsed, ElementName=Cegs, Converter={StaticResource TimeSpanConverter}, FallbackValue='23:59:59'}" />
+                        <Border Width="350" Margin="0,2,3,2" Padding="3,0"
+                                BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                                AutomationProperties.HelpText="Process Step">
+                            <TextBlock VerticalAlignment="Center"
+                                    Text="{Binding Component.ProcessStep.CurrentStep.Description, ElementName=Cegs, FallbackValue=''}" />
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Process Substep -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="ProcessSubstepTime" Margin="2,2,3,2" Padding="3,0,3,0"
+                                HorizontalContentAlignment="Right"
+                                BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                                AutomationProperties.HelpText="Process Substep Time"
+                                Content="{Binding Component.ProcessSubStep.Elapsed, ElementName=Cegs, Converter={StaticResource TimeSpanConverter}, FallbackValue='23:59:59'}" />
+                        <Border Width="350" Margin="0,2,3,2" Padding="3,0"
+                                BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="0.5"
+                                AutomationProperties.HelpText="Process Substep">
+                            <TextBlock VerticalAlignment="Center"
+                                    Text="{Binding Component.ProcessSubStep.CurrentStep.Description, ElementName=Cegs, FallbackValue=''}" />
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Start button -->
+                <StackPanel>
+                    <Button Margin="0,23,3,2" Padding="3,0,3,0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Content="Start" AutomationProperties.HelpText="Start the selected process"
+                            Click="StartButton_Click"
+                            Visibility="{Binding Component.NotBusy, ElementName=Cegs, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Sample Info -->
+        <StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Left"
+                VerticalAlignment="Bottom" AutomationProperties.HelpText="Active or Prior Sample">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Style.Triggers>
+                        <DataTrigger
+                                Binding="{Binding Component.Sample, ElementName=Cegs, Converter={StaticResource ToStringConverter}}"
+                                Value="">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger
+                                Binding="{Binding Component.Sample, ElementName=Cegs, Converter={StaticResource ToStringConverter}}"
+                                Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <TextBlock VerticalAlignment="Center" Text="Sample: " />
+            <TextBlock VerticalAlignment="Center"
+                    Text="{Binding Component.Sample, ElementName=Cegs, Converter={StaticResource ToStringConverter}}" />
+        </StackPanel>
+
+        <DockPanel LastChildFill="True">
+
+            <!-- LN and air section -->
+            <local:LNAndAir DockPanel.Dock="Right" Margin="0,10,10,0" />
+
+            <!--==============================================-->
+            <!-- Schematic Interface -->
+            <!--==============================================-->
+            <Canvas DockPanel.Dock="Left" Width="760" Height="500" Margin="0,10,0,80" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <!--<local:VS Canvas.Left="223" Canvas.Top="5"/>-->
+                <local:VS Canvas.Left="223" Canvas.Top="258"/>
+                <local:IM Canvas.Left="0" Canvas.Top="49" />
+                <local:CT Canvas.Left="267" Canvas.Top="178" />
+                <local:VTT Canvas.Left="389" Canvas.Top="237" />
+                <local:MC Canvas.Left="441" Canvas.Top="202" />
+                <local:Split Canvas.Left="493" Canvas.Top="237" />
+                <local:GM Canvas.Left="532" Canvas.Top="49" />
+
+                <v:Valve HelpText="IMC-CT valve" Component="vIMC_CT" Canvas.Left="249" Canvas.Top="232" />
+				<v:Valve HelpText="CT-VTT valve" Component="vCT_VTT" Canvas.Left="371" Canvas.Top="232" />
+				<v:Valve HelpText="VTT-MC valve" Component="vVTT_MC" Canvas.Left="423" Canvas.Top="232" />
+				<v:Valve HelpText="MC-Split valve" Component="vMC_Split" Canvas.Left="475" Canvas.Top="232" />
+				<v:Valve HelpText="Split-GMC valve" Component="vSplit_GMC" Canvas.Left="514" Canvas.Top="232" />
+
+            </Canvas>
+        </DockPanel>
+    </Grid>
+</v:ControlPanel>
