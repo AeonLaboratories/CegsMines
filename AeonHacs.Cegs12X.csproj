@@ -25,6 +25,16 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="AeonHacs.Hacs" Version="3.1.0" />
+	  <PackageReference Include="AeonHacs.Hacs.Wpf" Version="3.1.0" />
+	  <PackageReference Include="AeonHacs.Utilities" Version="3.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="LJUDDotNet">
+	    <HintPath>LJUDDotNet.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="Installation\AlertManager template.json">
@@ -70,7 +80,7 @@
 			<PackagePath>\</PackagePath>
 		</None>
 			<None Update="LJUDDotNet.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 </Project>

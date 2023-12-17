@@ -2,8 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Cegs12X.Views"
-        xmlns:wpf="clr-namespace:HACS.WPF;assembly=HACS.WPF" xmlns:v="clr-namespace:HACS.WPF.Views;assembly=HACS.WPF"
-        xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=HACS.WPF"
+        xmlns:wpf="clr-namespace:HACS.WPF;assembly=AeonHacs.Hacs.Wpf" xmlns:v="clr-namespace:HACS.WPF.Views;assembly=AeonHacs.Hacs.Wpf"
+        xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=AeonHacs.Hacs.Wpf"
         mc:Ignorable="d"
         Background="{x:Null}"
         Component="ugCinMC">
