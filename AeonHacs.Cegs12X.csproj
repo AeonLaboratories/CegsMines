@@ -10,11 +10,12 @@
         <Authors>Jim Wilson, Tyler Wilson</Authors>
         <Company>Aeon Laboratories</Company>
         <Copyright>Aeon Laboratories, 2022</Copyright>
-        <AssemblyName>AeonHacs.Cegs12X</AssemblyName>
+        <AssemblyName>Cegs12X</AssemblyName>
         <RootNamespace>Cegs12X</RootNamespace>
         <ApplicationIcon>keg.ico</ApplicationIcon>
 		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs12X</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AeonLaboratories/Cegs12X</PackageProjectUrl>
+		<PackageId>AeonHacs.$(AssemblyName)</PackageId>
 		<VersionPrefix>3.1.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<Version>$(VersionPrefix)$(VersionSuffix)</Version>
@@ -37,37 +38,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Installation\AlertManager template.json">
+		<None Update="Installation\AlertManager template.json" Link="AlertManager template.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Installation\CO2 eq.dat">
+		<None Update="Installation\CO2 eq.dat" Link="CO2 eq.dat">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Installation\LJUDDotNet.dll">
+		<None Update="Installation\LJUDDotNet.dll" Link="LJUDDotNet.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Installation\settings template.json">
+		<None Update="Installation\settings template.json" Link="settings template.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Installation\update code.cmd">
+		<None Update="Installation\update code.cmd" Link="update code.cmd">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Installation\Preferences.xaml">
+		<Page Update="Installation\Preferences.xaml" Link = "Preferences.xaml">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Page>
-		<Page Update="Views\ManifoldCenter.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Update="Views\ManifoldHalf.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Update="Views\MC.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 		</Page>
 	</ItemGroup>
 	<ItemGroup>
