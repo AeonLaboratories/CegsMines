@@ -1,2 +1,2 @@
-# Cegs12X
-Template for 12 GR x 12 IP Cegs
+# CegsAeon
+Template for CEGS6x1 (six graphite reactors and one inlet port)
