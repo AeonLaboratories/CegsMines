@@ -1,4 +1,4 @@
-﻿<v:ControlPanel x:TypeArguments="cegs:Cegs12X" x:Class="Cegs12X.Views.ControlPanel"
+﻿<v:ControlPanel x:TypeArguments="cegs:Cegs6x1" x:Class="Cegs12X.Views.ControlPanel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

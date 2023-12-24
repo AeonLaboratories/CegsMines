@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Title>Aeon Laboratories Cegs 12X Application</Title>
+		<Title>Aeon Laboratories Application for Aeon's CEGS6x1</Title>
 		<Description>HACS-based Carbon Extraction and Graphitization System</Description>
         <Company>Aeon Laboratories</Company>
         <Authors>Jim Wilson, Tyler Wilson</Authors>
         <Copyright>$(Company), 2022</Copyright>
-        <AssemblyName>Cegs12X</AssemblyName>
-		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs12X</RepositoryUrl>
+        <AssemblyName>Cegs6x1</AssemblyName>
+		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs6x1</RepositoryUrl>
 		<Version>3.1.1</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>

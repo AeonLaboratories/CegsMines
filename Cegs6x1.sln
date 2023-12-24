@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cegs12X", "Cegs12X.csproj", "{438C502D-749C-41AA-AE66-8ED561485820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cegs6x1", "Cegs6x1.csproj", "{438C502D-749C-41AA-AE66-8ED561485820}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

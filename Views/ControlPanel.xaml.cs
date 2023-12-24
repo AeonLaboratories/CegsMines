@@ -16,7 +16,7 @@ namespace Cegs12X.Views
     /// <summary>
     /// Interaction logic for ControlPanel.xaml
     /// </summary>
-    public partial class ControlPanel : AeonHacs.Wpf.Views.ControlPanel<AeonHacs.Components.Cegs12X>
+    public partial class ControlPanel : AeonHacs.Wpf.Views.ControlPanel<AeonHacs.Components.Cegs6x1>
     {
         ResourceDictionary Preferences = (ResourceDictionary)Application.Current.Resources["PreferencesDictionary"];
 

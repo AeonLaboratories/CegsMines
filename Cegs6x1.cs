@@ -7,7 +7,7 @@ using static AeonHacs.Utilities.Utility;
 
 namespace AeonHacs.Components
 {
-    public partial class Cegs12X : Cegs
+    public partial class Cegs6x1 : Cegs
     {
         #region HacsComponent
 
