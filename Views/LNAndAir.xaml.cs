@@ -1,4 +1,4 @@
-﻿using HACS.WPF.Views;
+﻿using AeonHacs.Wpf.Views;
 
 namespace Cegs12X.Views
 {

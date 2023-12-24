@@ -1,6 +1,6 @@
-﻿using HACS.Components;
-using HACS.Core;
-using HACS.WPF.Views;
+﻿using AeonHacs;
+using AeonHacs.Components;
+using AeonHacs.Wpf.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +16,7 @@ namespace Cegs12X.Views
     /// <summary>
     /// Interaction logic for ControlPanel.xaml
     /// </summary>
-    public partial class ControlPanel : HACS.WPF.Views.ControlPanel<Hacs12X>
+    public partial class ControlPanel : AeonHacs.Wpf.Views.ControlPanel<AeonHacs.Components.Cegs12X>
     {
         ResourceDictionary Preferences = (ResourceDictionary)Application.Current.Resources["PreferencesDictionary"];
 
@@ -34,7 +34,7 @@ namespace Cegs12X.Views
             InitializeComponent();
             PopulateProcessSelector();
 
-            if (Hacs is CEGS cegs)
+            if (Hacs is Cegs cegs)
                 cegs.SelectSamples += OpenSampleSelector;
 
             StartUpdateCycle();

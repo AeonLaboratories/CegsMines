@@ -5,7 +5,7 @@
 	<Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/HACS.WPF;component/Themes/Defaults.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/AeonHacs.Wpf;component/Themes/Defaults.xaml"/>
 				<ResourceDictionary Source="/Themes/Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

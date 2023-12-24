@@ -1,68 +1,53 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows10.0.17763": {
-      "AeonHacs.Hacs/3.1.0": {
+    "net8.0-windows7.0": {
+      "AeonHacs.Core/3.1.1": {
         "type": "package",
         "dependencies": {
-          "AeonHacs.Utilities": "3.1.0",
           "MailKit": "4.3.0",
           "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.3",
-          "System.Data.DataSetExtensions": "4.5.0"
+          "System.Data.DataSetExtensions": "4.6.0-preview3.19128.7",
+          "System.IO.Ports": "8.0.0",
+          "System.Management": "8.0.0"
         },
         "compile": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.dll": {
+          "lib/net8.0-windows7.0/AeonHacs.Core.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.dll": {
+          "lib/net8.0-windows7.0/AeonHacs.Core.dll": {
             "related": ".xml"
           }
         }
       },
-      "AeonHacs.Hacs.Wpf/3.1.0": {
+      "AeonHacs.Wpf/3.1.1": {
         "type": "package",
         "dependencies": {
-          "AeonHacs.Hacs": "3.1.0",
+          "AeonHacs.Core": "3.1.1",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.77",
           "Newtonsoft.Json": "13.0.3",
-          "System.Drawing.Common": "8.0.0"
+          "System.Drawing.Common": "8.0.0",
+          "WPFControls.ColorPicker": "1.0.0",
+          "WpfControls.Core": "1.0.0",
+          "WpfControls.NumericUpdown": "1.0.0",
+          "WpfControls.Viewport": "1.0.0"
         },
         "compile": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.Wpf.dll": {
+          "lib/net8.0-windows7.0/AeonHacs.Wpf.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.Wpf.dll": {
+          "lib/net8.0-windows7.0/AeonHacs.Wpf.dll": {
             "related": ".xml"
           }
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
         ]
-      },
-      "AeonHacs.Utilities/3.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "13.0.3",
-          "System.Data.DataSetExtensions": "4.5.0",
-          "System.IO.Ports": "8.0.0",
-          "System.Management": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Utilities.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0-windows10.0.17763/AeonHacs.Utilities.dll": {
-            "related": ".xml"
-          }
-        }
       },
       "BouncyCastle.Cryptography/2.2.1": {
         "type": "package",
@@ -243,13 +228,15 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "System.Data.DataSetExtensions/4.5.0": {
+      "System.Data.DataSetExtensions/4.6.0-preview3.19128.7": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Data.DataSetExtensions.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Data.DataSetExtensions.dll": {}
+          "lib/netstandard2.0/System.Data.DataSetExtensions.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Drawing.Common/8.0.0": {
@@ -403,53 +390,513 @@
             "rid": "win"
           }
         }
+      },
+      "WPFControls.ColorPicker/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0",
+          "WPFControls.NumericUpDown": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.Core/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.NumericUpDown/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.NumericUpDown.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.NumericUpDown.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.Viewport/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.Viewport.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.Viewport.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    },
+    "net8.0-windows7.0/win-x64": {
+      "AeonHacs.Core/3.1.1": {
+        "type": "package",
+        "dependencies": {
+          "MailKit": "4.3.0",
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Data.DataSetExtensions": "4.6.0-preview3.19128.7",
+          "System.IO.Ports": "8.0.0",
+          "System.Management": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/AeonHacs.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/AeonHacs.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AeonHacs.Wpf/3.1.1": {
+        "type": "package",
+        "dependencies": {
+          "AeonHacs.Core": "3.1.1",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.77",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Drawing.Common": "8.0.0",
+          "WPFControls.ColorPicker": "1.0.0",
+          "WpfControls.Core": "1.0.0",
+          "WpfControls.NumericUpdown": "1.0.0",
+          "WpfControls.Viewport": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/AeonHacs.Wpf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/AeonHacs.Wpf.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "BouncyCastle.Cryptography/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MailKit/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "MimeKit": "4.3.0"
+        },
+        "compile": {
+          "lib/net6.0/MailKit.dll": {
+            "related": ".dll.config;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MailKit.dll": {
+            "related": ".dll.config;.pdb;.xml"
+          }
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "Microsoft.Win32.SystemEvents/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "MimeKit/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.2.1",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
+          "System.Security.Cryptography.Pkcs": "7.0.3",
+          "System.Text.Encoding.CodePages": "7.0.0"
+        },
+        "compile": {
+          "lib/net6.0/MimeKit.dll": {
+            "related": ".dll.config;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MimeKit.dll": {
+            "related": ".dll.config;.pdb;.xml"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "runtime.linux-arm.runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package"
+      },
+      "runtime.linux-arm64.runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package"
+      },
+      "runtime.linux-x64.runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package"
+      },
+      "runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "runtime.linux-arm.runtime.native.System.IO.Ports": "8.0.0",
+          "runtime.linux-arm64.runtime.native.System.IO.Ports": "8.0.0",
+          "runtime.linux-x64.runtime.native.System.IO.Ports": "8.0.0",
+          "runtime.osx-arm64.runtime.native.System.IO.Ports": "8.0.0",
+          "runtime.osx-x64.runtime.native.System.IO.Ports": "8.0.0"
+        }
+      },
+      "runtime.osx-arm64.runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package"
+      },
+      "runtime.osx-x64.runtime.native.System.IO.Ports/8.0.0": {
+        "type": "package"
+      },
+      "System.CodeDom/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.CodeDom.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.CodeDom.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Data.DataSetExtensions/4.6.0-preview3.19128.7": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Data.DataSetExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.DataSetExtensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Drawing.Common/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/System.Drawing.Common.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Drawing.Common.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Formats.Asn1/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/System.Formats.Asn1.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/System.Formats.Asn1.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.IO.Ports/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "runtime.native.System.IO.Ports": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/System.IO.Ports.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net8.0/System.IO.Ports.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Management/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.CodeDom": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/System.Management.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net8.0/System.Management.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Security.Cryptography.Pkcs/7.0.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Formats.Asn1": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/System.Security.Cryptography.Pkcs.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net7.0/System.Security.Cryptography.Pkcs.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "WPFControls.ColorPicker/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0",
+          "WPFControls.NumericUpDown": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.Core/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.NumericUpDown/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.NumericUpDown.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.NumericUpDown.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPFControls.Viewport/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "WPFControls.Core": "1.0.0"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/WPFControls.Viewport.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/WPFControls.Viewport.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
   "libraries": {
-    "AeonHacs.Hacs/3.1.0": {
-      "sha512": "R/pVEzpA2WAyn5/hUcBY55jEpQQOpKl2GzdHUadFcMmLy6flM3OZYaPiXx9dGZrsveWn6RcX6M+UYxYcLoYjHQ==",
+    "AeonHacs.Core/3.1.1": {
+      "sha512": "y6DTSFHE2WdX3BTajuTcQCzE6FlsG+BZaP9zl9I0M17qFOmbkYpPEqkP+ac0Dk74zqvRaLaREqgX3wAbDJADjw==",
       "type": "package",
-      "path": "aeonhacs.hacs/3.1.0",
+      "path": "aeonhacs.core/3.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "README.md",
-        "aeonhacs.hacs.3.1.0.nupkg.sha512",
-        "aeonhacs.hacs.nuspec",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.dll",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.xml"
+        "aeonhacs.core.3.1.1.nupkg.sha512",
+        "aeonhacs.core.nuspec",
+        "lib/net8.0-windows7.0/AeonHacs.Core.dll",
+        "lib/net8.0-windows7.0/AeonHacs.Core.xml"
       ]
     },
-    "AeonHacs.Hacs.Wpf/3.1.0": {
-      "sha512": "20mMt9Fco008PX9XjhRjoc0jM63R2SFYk93vIHAWYOG7W83Ajzjt61oMnGfapcUzhmoXLIR3KGy9ypdaMDsKqA==",
+    "AeonHacs.Wpf/3.1.1": {
+      "sha512": "r6LflUTRlxvQccdFIzdNeutGpGDq9Fnk+TiCbfyHDupdDMvaZ98LcpRXgaoy88BrS//IKiVDpLM7MWy3f1uK8w==",
       "type": "package",
-      "path": "aeonhacs.hacs.wpf/3.1.0",
+      "path": "aeonhacs.wpf/3.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "README.md",
-        "aeonhacs.hacs.wpf.3.1.0.nupkg.sha512",
-        "aeonhacs.hacs.wpf.nuspec",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.Wpf.dll",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Hacs.Wpf.xml"
-      ]
-    },
-    "AeonHacs.Utilities/3.1.0": {
-      "sha512": "3yn1b9+KYQM3qY23y2S3W37CHgu+SWanvM8sL4brWDzc0DJXdjtpRAnYwUEy9NC4XKpQbTEpN1t9lcOJVw3omA==",
-      "type": "package",
-      "path": "aeonhacs.utilities/3.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "README.md",
-        "aeonhacs.utilities.3.1.0.nupkg.sha512",
-        "aeonhacs.utilities.nuspec",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Utilities.dll",
-        "lib/net8.0-windows10.0.17763/AeonHacs.Utilities.xml"
+        "aeonhacs.wpf.3.1.1.nupkg.sha512",
+        "aeonhacs.wpf.nuspec",
+        "lib/net8.0-windows7.0/AeonHacs.Wpf.dll",
+        "lib/net8.0-windows7.0/AeonHacs.Wpf.xml"
       ]
     },
     "BouncyCastle.Cryptography/2.2.1": {
@@ -830,10 +1277,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Data.DataSetExtensions/4.5.0": {
-      "sha512": "221clPs1445HkTBZPL+K9sDBdJRB8UN8rgjO3ztB0CQ26z//fmJXtlsr6whGatscsKGBrhJl5bwJuKSA8mwFOw==",
+    "System.Data.DataSetExtensions/4.6.0-preview3.19128.7": {
+      "sha512": "ZFJYYi41Wf4xlFKuuRUblw8yThgzBTYeZTs7eGU7sDiu+X+BmeIdT3pstCrmLpDyflDIBuKX1VYmBCGKo14h6w==",
       "type": "package",
-      "path": "system.data.datasetextensions/4.5.0",
+      "path": "system.data.datasetextensions/4.6.0-preview3.19128.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -841,9 +1288,10 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net45/_._",
         "lib/netstandard2.0/System.Data.DataSetExtensions.dll",
+        "lib/netstandard2.0/System.Data.DataSetExtensions.xml",
         "ref/net45/_._",
         "ref/netstandard2.0/System.Data.DataSetExtensions.dll",
-        "system.data.datasetextensions.4.5.0.nupkg.sha512",
+        "system.data.datasetextensions.4.6.0-preview3.19128.7.nupkg.sha512",
         "system.data.datasetextensions.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -1085,13 +1533,76 @@
         "system.text.encoding.codepages.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "WPFControls.ColorPicker/1.0.0": {
+      "sha512": "0t9475Dqtpyskm/05Flc4IijzKOy1DtfpaE1hsZBqUvd6Dv1VDK53gFRPwfbUiwg3/KG6RP826ZHWXBxOC1uBw==",
+      "type": "package",
+      "path": "wpfcontrols.colorpicker/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/net8.0-windows7.0/WPFControls.ColorPicker.dll",
+        "lib/net8.0-windows7.0/WPFControls.ColorPicker.xml",
+        "wpfcontrols.colorpicker.1.0.0.nupkg.sha512",
+        "wpfcontrols.colorpicker.nuspec"
+      ]
+    },
+    "WPFControls.Core/1.0.0": {
+      "sha512": "0mYI3ZZWS8DnrmbJEguwGKkpBeg5K7Bz2W+em8zRb7JgH74tTcfnb8Xbp8NG5Nw2SdLyQ/6gLoGq0Ph3fTUDcA==",
+      "type": "package",
+      "path": "wpfcontrols.core/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/net8.0-windows7.0/WPFControls.Core.dll",
+        "lib/net8.0-windows7.0/WPFControls.Core.xml",
+        "wpfcontrols.core.1.0.0.nupkg.sha512",
+        "wpfcontrols.core.nuspec"
+      ]
+    },
+    "WPFControls.NumericUpDown/1.0.0": {
+      "sha512": "mmFWgJv8Y/OGCcSmxD0nxWSi7U6R0Kj9Ed3+7Xwo11Pcj2iGND05i2IDbGxkcgnz8l3hgbXtG5Y3ClJOjTcpbg==",
+      "type": "package",
+      "path": "wpfcontrols.numericupdown/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/net8.0-windows7.0/WPFControls.NumericUpDown.dll",
+        "lib/net8.0-windows7.0/WPFControls.NumericUpDown.xml",
+        "wpfcontrols.numericupdown.1.0.0.nupkg.sha512",
+        "wpfcontrols.numericupdown.nuspec"
+      ]
+    },
+    "WPFControls.Viewport/1.0.0": {
+      "sha512": "4pDiiXYzFJP4ODFYSMgc8WFkbT6Gw6F7+44/fBYf5k+6GMF0lR7YDzDXUApqMwL7bXiP7UUvEZlcCp8N+kYSqA==",
+      "type": "package",
+      "path": "wpfcontrols.viewport/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/net8.0-windows7.0/WPFControls.Viewport.dll",
+        "lib/net8.0-windows7.0/WPFControls.Viewport.xml",
+        "wpfcontrols.viewport.1.0.0.nupkg.sha512",
+        "wpfcontrols.viewport.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0-windows10.0.17763": [
-      "AeonHacs.Hacs >= 3.1.0",
-      "AeonHacs.Hacs.Wpf >= 3.1.0",
-      "AeonHacs.Utilities >= 3.1.0"
+    "net8.0-windows7.0": [
+      "AeonHacs.Core >= 3.1.1",
+      "AeonHacs.Wpf >= 3.1.1",
+      "WpfControls.ColorPicker >= 1.0.0",
+      "WpfControls.Core >= 1.0.0",
+      "WpfControls.NumericUpdown >= 1.0.0",
+      "WpfControls.Viewport >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1099,13 +1610,13 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "3.1.0",
+    "version": "3.1.1",
     "restore": {
-      "projectUniqueName": "C:\\Data\\Source\\DevStudio\\AeonHacs.Cegs12X\\AeonHacs.Cegs12X.csproj",
+      "projectUniqueName": "C:\\Data\\Source\\DevStudio\\AeonHacs\\Cegs12X\\Cegs12X.csproj",
       "projectName": "AeonHacs.Cegs12X",
-      "projectPath": "C:\\Data\\Source\\DevStudio\\AeonHacs.Cegs12X\\AeonHacs.Cegs12X.csproj",
+      "projectPath": "C:\\Data\\Source\\DevStudio\\AeonHacs\\Cegs12X\\Cegs12X.csproj",
       "packagesPath": "C:\\Users\\Jim\\.nuget\\packages\\",
-      "outputPath": "C:\\Data\\Source\\DevStudio\\AeonHacs.Cegs12X\\obj\\",
+      "outputPath": "C:\\Data\\Source\\DevStudio\\AeonHacs\\Cegs12X\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1116,7 +1627,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows10.0.17763.0"
+        "net8.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -1124,8 +1635,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows10.0.17763": {
-          "targetAlias": "net8.0-windows10.0.17763.0",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "projectReferences": {}
         }
       },
@@ -1136,20 +1647,32 @@
       }
     },
     "frameworks": {
-      "net8.0-windows10.0.17763": {
-        "targetAlias": "net8.0-windows10.0.17763.0",
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
         "dependencies": {
-          "AeonHacs.Hacs": {
+          "AeonHacs.Core": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "[3.1.1, )"
           },
-          "AeonHacs.Hacs.Wpf": {
+          "AeonHacs.Wpf": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "[3.1.1, )"
           },
-          "AeonHacs.Utilities": {
+          "WpfControls.ColorPicker": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "[1.0.0, )"
+          },
+          "WpfControls.Core": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "WpfControls.NumericUpdown": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "WpfControls.Viewport": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "imports": [
@@ -1163,17 +1686,8 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.17763.31, 10.0.17763.31]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          },
-          "Microsoft.Windows.SDK.NET.Ref": {
             "privateAssets": "all"
           },
           "Microsoft.WindowsDesktop.App.WPF": {
@@ -1181,6 +1695,11 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }

@@ -1,15 +1,13 @@
-﻿using HACS.Components;
-using HACS.Core;
+﻿using AeonHacs.Utilities;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using Utilities;
-using static HACS.Components.CegsPreferences;
-using static Utilities.Utility;
+using static AeonHacs.Components.CegsPreferences;
+using static AeonHacs.Utilities.Utility;
 
-namespace Cegs12X
+namespace AeonHacs.Components
 {
-    public partial class Hacs12X : HACS.Components.CEGS
+    public partial class Cegs12X : Cegs
     {
         #region HacsComponent
 
@@ -101,8 +99,8 @@ namespace Cegs12X
         {
             base.Connect();
 
-            #region a CEGS needs these
-            // The base CEGS really can't do "carbon extraction and graphitization"
+            #region a Cegs needs these
+            // The base Cegs really can't do "carbon extraction and graphitization"
             // unless these objects are defined.
 
             Power = Find<Power>("Power");
@@ -124,13 +122,13 @@ namespace Cegs12X
             GraphiteReactors = CachedList<IGraphiteReactor>();
             d13CPorts = CachedList<Id13CPort>();
 
-            #endregion a CEGS needs these
+            #endregion a Cegs needs these
 
-            #region CEGS options
-            // The CEGS doesn't require these, but provides
+            #region Cegs options
+            // The Cegs doesn't require these, but provides
             // added functionality if they are present.
 
-            #endregion CEGS options
+            #endregion Cegs options
 
             CT = Find<Section>("CT");
             IM_CT = Find<Section>("IM_CT");

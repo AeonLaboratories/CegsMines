@@ -1,5 +1,5 @@
-﻿using HACS.WPF.Media;
-using HACS.WPF.Views;
+﻿using AeonHacs.Wpf.Media;
+using AeonHacs.Wpf.Views;
 using System.Windows;
 
 namespace Cegs12X.Views

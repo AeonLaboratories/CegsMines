@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Title>Aeon Laboratories Cegs 12X Application</Title>
+		<Description>HACS-based Carbon Extraction and Graphitization System</Description>
+        <Company>Aeon Laboratories</Company>
+        <Authors>Jim Wilson, Tyler Wilson</Authors>
+        <Copyright>$(Company), 2022</Copyright>
+        <AssemblyName>Cegs12X</AssemblyName>
+		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs12X</RepositoryUrl>
+		<Version>3.1.1</Version>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+
+		<UseWPF>true</UseWPF>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Deterministic>true</Deterministic>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>$(OutputPath)</DocumentationFile>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>AeonHacs.$(AssemblyName)</PackageId>
+		<PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>		
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="AeonHacs.Core" Version="3.1.1" />
+	  <PackageReference Include="AeonHacs.Wpf" Version="3.1.1" />
+	  <PackageReference Include="WpfControls.Core" Version="1.0.0" />
+	  <PackageReference Include="WpfControls.Viewport" Version="1.0.0" />
+	  <PackageReference Include="WpfControls.NumericUpdown" Version="1.0.0" />
+	  <PackageReference Include="WpfControls.ColorPicker" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="LJUDDotNet">
+	    <HintPath>Installation\LJUDDotNet.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<None Update="Installation/*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>-->
+		<None Update="Installation\settings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+		<None Update="Installation\Credentials.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+		<None Update="Installation\Preferences.xaml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+		<None Update="Installation\CO2 eq.dat">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+		<None Update="Installation\update code.cmd">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update=".git">
+			<Visible>False</Visible>
+		</None>
+		<None Update=".gitattributes">
+			<Visible>False</Visible>
+		</None>
+		<None Update=".gitignore">
+			<Visible>False</Visible>
+		</None>
+	</ItemGroup>
+</Project>

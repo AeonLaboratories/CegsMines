@@ -1,14 +1,14 @@
-﻿<v:ControlPanel x:TypeArguments="cegs:Hacs12X" x:Class="Cegs12X.Views.ControlPanel"
+﻿<v:ControlPanel x:TypeArguments="cegs:Cegs12X" x:Class="Cegs12X.Views.ControlPanel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:cegs="clr-namespace:Cegs12X"
+        xmlns:cegs="clr-namespace:AeonHacs.Components"
         xmlns:local="clr-namespace:Cegs12X.Views"
-        xmlns:wpf="clr-namespace:HACS.WPF;assembly=AeonHacs.Hacs.Wpf"
-        xmlns:v="clr-namespace:HACS.WPF.Views;assembly=AeonHacs.Hacs.Wpf"
-        xmlns:b="clr-namespace:HACS.WPF.Behaviors;assembly=AeonHacs.Hacs.Wpf"
-        xmlns:c="clr-namespace:HACS.WPF.Converters;assembly=AeonHacs.Hacs.Wpf"
+        xmlns:wpf="clr-namespace:AeonHacs.Wpf;assembly=AeonHacs.Wpf"
+        xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+        xmlns:b="clr-namespace:AeonHacs.Wpf.Behaviors;assembly=AeonHacs.Wpf"
+        xmlns:c="clr-namespace:AeonHacs.Wpf.Converters;assembly=AeonHacs.Wpf"
         mc:Ignorable="d" 
         d:DesignWidth="1020"
         d:DesignHeight="550">
@@ -24,7 +24,7 @@
     <!-- The display space -->
     <!--==============================================-->
     <Grid>
-        <!-- Simplify references to CEGS properties -->
+        <!-- Simplify references to Cegs properties -->
         <v:View x:Name="Cegs" Component="CEGS12X" Visibility="Collapsed" />
 
         <!-- System Uptime -->

@@ -1,4 +1,4 @@
-﻿using HACS.WPF.Views;
+﻿using AeonHacs.Wpf.Views;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -23,8 +23,8 @@ namespace Cegs12X.Views
 
         protected override void OnComponentUpdated(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(HACS.Components.Meter.Value))
-                Stable_ugC = (sender as HACS.WPF.ViewModels.Meter)?.IsStable ?? false;
+            if (e.PropertyName == nameof(AeonHacs.Components.Meter.Value))
+                Stable_ugC = (sender as AeonHacs.Wpf.ViewModels.Meter)?.IsStable ?? false;
 
             base.OnComponentUpdated(sender, e);
         }

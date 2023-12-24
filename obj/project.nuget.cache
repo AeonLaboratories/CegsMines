@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "V0ibiJg8ZDPjGs1+em+hxoGNTkYzxcyWVIAco5mg9jpV66Qq8rRpPUVWfo4mWL3v/1TBh2tNacqIHagaLzXjmw==",
+  "dgSpecHash": "/zZ9zor88DGasW9cDkgHrTULek84GsxhcV/6iqs7MdnjjtLPsL4BTwKdiST5bJSPFo3g2AF5HNsiM8hiJPSwGA==",
   "success": true,
-  "projectFilePath": "C:\\Data\\Source\\DevStudio\\AeonHacs.Cegs12X\\AeonHacs.Cegs12X.csproj",
+  "projectFilePath": "C:\\Data\\Source\\DevStudio\\AeonHacs\\Cegs12X\\Cegs12X.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jim\\.nuget\\packages\\aeonhacs.hacs\\3.1.0\\aeonhacs.hacs.3.1.0.nupkg.sha512",
-    "C:\\Users\\Jim\\.nuget\\packages\\aeonhacs.hacs.wpf\\3.1.0\\aeonhacs.hacs.wpf.3.1.0.nupkg.sha512",
-    "C:\\Users\\Jim\\.nuget\\packages\\aeonhacs.utilities\\3.1.0\\aeonhacs.utilities.3.1.0.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\aeonhacs.core\\3.1.1\\aeonhacs.core.3.1.1.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\aeonhacs.wpf\\3.1.1\\aeonhacs.wpf.3.1.1.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\mailkit\\4.3.0\\mailkit.4.3.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -21,7 +20,7 @@
     "C:\\Users\\Jim\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\8.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\8.0.0\\runtime.osx-x64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jim\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\system.data.datasetextensions\\4.6.0-preview3.19128.7\\system.data.datasetextensions.4.6.0-preview3.19128.7.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.drawing.common\\8.0.0\\system.drawing.common.8.0.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.formats.asn1\\7.0.0\\system.formats.asn1.7.0.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.io.ports\\8.0.0\\system.io.ports.8.0.0.nupkg.sha512",
@@ -29,7 +28,10 @@
     "C:\\Users\\Jim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.security.cryptography.pkcs\\7.0.3\\system.security.cryptography.pkcs.7.0.3.nupkg.sha512",
     "C:\\Users\\Jim\\.nuget\\packages\\system.text.encoding.codepages\\7.0.0\\system.text.encoding.codepages.7.0.0.nupkg.sha512",
-    "C:\\Users\\Jim\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.17763.31\\microsoft.windows.sdk.net.ref.10.0.17763.31.nupkg.sha512"
+    "C:\\Users\\Jim\\.nuget\\packages\\wpfcontrols.colorpicker\\1.0.0\\wpfcontrols.colorpicker.1.0.0.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\wpfcontrols.core\\1.0.0\\wpfcontrols.core.1.0.0.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\wpfcontrols.numericupdown\\1.0.0\\wpfcontrols.numericupdown.1.0.0.nupkg.sha512",
+    "C:\\Users\\Jim\\.nuget\\packages\\wpfcontrols.viewport\\1.0.0\\wpfcontrols.viewport.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

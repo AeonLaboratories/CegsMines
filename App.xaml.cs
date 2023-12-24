@@ -1,10 +1,10 @@
-﻿using HACS.Core;
+﻿using AeonHacs;
 using System;
 using System.Media;
 using System.Windows;
 using System.Windows.Markup;
 using System.Xml;
-using Utilities;
+using AeonHacs.Utilities;
 
 namespace Cegs12X
 {
@@ -22,7 +22,7 @@ namespace Cegs12X
             StartNoticeHandler();
             LoadPreferences();
 
-            var window = new HACS.WPF.Views.MainWindow();
+            var window = new AeonHacs.Wpf.Views.MainWindow();
             window.LoadControlPanel(new Views.ControlPanel(window.Close));
             MainWindow = window;
 

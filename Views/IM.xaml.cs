@@ -1,4 +1,4 @@
-﻿using HACS.WPF.Views;
+﻿using AeonHacs.Wpf.Views;
 using System.Windows;
 
 namespace Cegs12X.Views
@@ -14,7 +14,7 @@ namespace Cegs12X.Views
         }
         private void InletPort_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (View.GetComponent(sender as UIElement) is HACS.WPF.ViewModels.InletPort ip &&
+            if (View.GetComponent(sender as UIElement) is AeonHacs.Wpf.ViewModels.InletPort ip &&
                 e.LeftButton == System.Windows.Input.MouseButtonState.Pressed &&
                 e.ClickCount == 2)
             {

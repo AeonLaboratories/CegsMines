@@ -1,4 +1,4 @@
-﻿using HACS.WPF.Views;
+﻿using AeonHacs.Wpf.Views;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,7 +20,7 @@ namespace Cegs12X.Views
         //    base.OnMouseDoubleClick(e);
         //}
 
-        void EditSample(HACS.WPF.ViewModels.InletPort ip)
+        void EditSample(AeonHacs.Wpf.ViewModels.InletPort ip)
         {
             if (ip == null) return;
             var w = new Window()
@@ -34,8 +34,8 @@ namespace Cegs12X.Views
         private void InletPort_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
-                EditSample((thisIP.Component as HACS.WPF.ViewModels.InletPort) ??
-                    GetComponent(sender as UIElement) as HACS.WPF.ViewModels.InletPort);
+                EditSample((thisIP.Component as AeonHacs.Wpf.ViewModels.InletPort) ??
+                    GetComponent(sender as UIElement) as AeonHacs.Wpf.ViewModels.InletPort);
         }
     }
 }

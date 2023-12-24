@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:v="clr-namespace:HACS.WPF.Views;assembly=AeonHacs.Hacs.Wpf">
+					xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf">
 
     <VisualBrush x:Key="FittingGrid" Opacity="0.5" TileMode="Tile" Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="RelativeToBoundingBox" ViewportUnits="Absolute" Viewport="-8,-8,26,26">
         <VisualBrush.Visual>
