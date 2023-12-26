@@ -6,7 +6,7 @@ using System.Windows.Markup;
 using System.Xml;
 using AeonHacs.Utilities;
 
-namespace Cegs12X
+namespace Cegs6x1
 {
     /// <summary>
     /// Interaction logic for App.xaml

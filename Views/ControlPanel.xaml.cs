@@ -11,7 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace Cegs12X.Views
+namespace Cegs6x1.Views
 {
     /// <summary>
     /// Interaction logic for ControlPanel.xaml

@@ -7,7 +7,7 @@
         <Copyright>$(Company), 2022</Copyright>
         <AssemblyName>Cegs6x1</AssemblyName>
 		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs6x1</RepositoryUrl>
-		<Version>3.1.1</Version>
+		<Version>1.0.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 
