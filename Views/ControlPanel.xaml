@@ -140,11 +140,11 @@
                 <local:Split Canvas.Left="493" Canvas.Top="137" />
                 <local:GM Canvas.Left="532" Canvas.Top="53" />
 
-                <v:Valve HelpText="IMC-CT valve" Component="vIMC_CT" Canvas.Left="249" Canvas.Top="132" />
+                <v:Valve HelpText="IM-CT valve" Component="vIM_CT" Canvas.Left="249" Canvas.Top="132" />
                 <v:Valve HelpText="CT-VTT valve" Component="vCT_VTT" Canvas.Left="371" Canvas.Top="132" />
                 <v:Valve HelpText="VTT-MC valve" Component="vVTT_MC" Canvas.Left="423" Canvas.Top="132" />
                 <v:Valve HelpText="MC-Split valve" Component="vMC_Split" Canvas.Left="475" Canvas.Top="132" />
-                <v:Valve HelpText="Split-GMC valve" Component="vSplit_GMC" Canvas.Left="514" Canvas.Top="132" />
+                <v:Valve HelpText="Split-GM valve" Component="vSplit_GM" Canvas.Left="514" Canvas.Top="132" />
 
             </Canvas>
         </DockPanel>

@@ -21,11 +21,17 @@
                       h-68 v13 h-8 v-13 h-44 v13 h-8 v-13 h-98 z" />
             </Canvas>
 
+            <!--Gross pressure manometer-->
+            <v:PortPressureSensor Canvas.Left="256" Canvas.Top="72" Background="Transparent" Panel.ZIndex="-1"
+                IsHitTestVisible="False" />
+            <Rectangle Canvas.Left="252" Canvas.Top="68" Width="19" Height="19" d:Fill="#2200FFFF" Fill="Transparent"
+                v:View.Component="pVM_GP" AutomationProperties.HelpText="Gross pressure manometer"/>
+
             <!--Vacuum manifold pressure-->
             <Canvas Canvas.Left="25" Canvas.Top="23" Width="44" Height="51" Background="Transparent"
             v:View.Component="pVM" AutomationProperties.HelpText="Vacuum manifold pressure">
-                <v:EdwardsAimX Canvas.Bottom="0" Component="pVM_IG" HelpText="Low-pressure manometer" />
-                <v:Mks901P Canvas.Right="0" Canvas.Bottom="0" Component="pVM_HP" HelpText="High-pressure manometer" />
+                <v:EdwardsAimX Canvas.Bottom="0" Component="pVM_IG" HelpText="Very low pressure manometer" />
+                <v:Mks901P Canvas.Right="0" Canvas.Bottom="0" Component="pVM_LP" HelpText="Low pressure manometer" />
                 <v:Pressure Canvas.Left="22" Canvas.Bottom="29" RenderTransform="{wpf:AnchorTransform BottomCenter}" IsHitTestVisible="False"
                     Component="pVM" ContentStringFormat="0.0e0" FontSize="16" />
             </Canvas>
@@ -33,42 +39,18 @@
             <!--Gas supplies-->
             <Canvas Canvas.Left="225" Canvas.Top="104" Width="99" Height="95">
                 <StackPanel Width="21" Background="Transparent"
-                    AutomationProperties.HelpText="Carbon dioxide gas supply">
+                    AutomationProperties.HelpText="Oxygen gas supply">
                     <v:Valve HorizontalAlignment="Center"
-                        Component="vCO2_VM" HelpText="CO2-VM valve"/>
-                    <Path HorizontalAlignment="Center" Margin="-1" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
-                        Data="M0.5,0.5 h8 v8 h-8 z" />
-                    <v:Valve HorizontalAlignment="Center"
-                        Component="vCO2Flow" HelpText="CO2 flow valve">
-                        <v:Restriction />
-                    </v:Valve>
+                        Component="vO2_VM" HelpText="O2-VM valve"/>
                     <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
                     <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
                     <Canvas Width="21" Height="21">
                         <TextBlock Canvas.Left="10.5" Padding="0" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
-                    <Run Text="CO" /><Run Typography.Variants="Subscript" Text="2"/>
+                        <Run Text="O" /><Run Typography.Variants="Subscript" Text="2" />
                         </TextBlock>
                     </Canvas>
                 </StackPanel>
                 <StackPanel Canvas.Left="26" Width="21" Background="Transparent"
-                    AutomationProperties.HelpText="Hydrogen gas supply">
-                    <v:Valve HorizontalAlignment="Center"
-                        Component="vH2_VM" HelpText="H2-VM valve"/>
-                    <Path HorizontalAlignment="Center" Margin="-1" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
-                        Data="M0.5,0.5 h8 v8 h-8 z" />
-                    <v:Valve HorizontalAlignment="Center"
-                        Component="vH2Flow" HelpText="H2 flow valve">
-                        <v:Restriction />
-                    </v:Valve>
-                    <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
-                    <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
-                    <Canvas Width="21" Height="21">
-                        <TextBlock Canvas.Left="10.5" Padding="0" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
-                    <Run Text="H" /><Run Typography.Variants="Subscript" Text="2"/>
-                        </TextBlock>
-                    </Canvas>
-                </StackPanel>
-                <StackPanel Canvas.Left="52" Width="21" Background="Transparent"
                     AutomationProperties.HelpText="Helium gas supply">
                     <v:Valve HorizontalAlignment="Center"
                         Component="vHe_VM" HelpText="He-VM valve"/>
@@ -86,15 +68,39 @@
                         </TextBlock>
                     </Canvas>
                 </StackPanel>
-                <StackPanel Canvas.Left="78" Width="21" Background="Transparent"
-                    AutomationProperties.HelpText="Oxygen gas supply">
+                <StackPanel Canvas.Left="52" Width="21" Background="Transparent"
+                    AutomationProperties.HelpText="Hydrogen gas supply">
                     <v:Valve HorizontalAlignment="Center"
-                        Component="vO2_VM" HelpText="O2-VM valve"/>
+                        Component="vH2_VM" HelpText="H2-VM valve"/>
+                    <Path HorizontalAlignment="Center" Margin="-1" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+                        Data="M0.5,0.5 h8 v8 h-8 z" />
+                    <v:Valve HorizontalAlignment="Center"
+                        Component="vH2Flow" HelpText="H2 flow valve">
+                        <v:Restriction />
+                    </v:Valve>
                     <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
                     <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
                     <Canvas Width="21" Height="21">
                         <TextBlock Canvas.Left="10.5" Padding="0" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
-                        <Run Text="O" /><Run Typography.Variants="Subscript" Text="2" />
+                    <Run Text="H" /><Run Typography.Variants="Subscript" Text="2"/>
+                        </TextBlock>
+                    </Canvas>
+                </StackPanel>
+                <StackPanel Canvas.Left="78" Width="21" Background="Transparent"
+                    AutomationProperties.HelpText="Carbon dioxide gas supply">
+                    <v:Valve HorizontalAlignment="Center"
+                        Component="vCO2_VM" HelpText="CO2-VM valve"/>
+                    <Path HorizontalAlignment="Center" Margin="-1" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+                        Data="M0.5,0.5 h8 v8 h-8 z" />
+                    <v:Valve HorizontalAlignment="Center"
+                        Component="vCO2Flow" HelpText="CO2 flow valve">
+                        <v:Restriction />
+                    </v:Valve>
+                    <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
+                    <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
+                    <Canvas Width="21" Height="21">
+                        <TextBlock Canvas.Left="10.5" Padding="0" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
+                    <Run Text="CO" /><Run Typography.Variants="Subscript" Text="2"/>
                         </TextBlock>
                     </Canvas>
                 </StackPanel>
@@ -118,19 +124,18 @@
                 <Path Canvas.Left="24" Canvas.Top="57" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
                 Data="M0.5,0.5 h5 v8 h-5 z" />
                 <Path Canvas.Left="47" Canvas.Top="18" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
-                Data="M0.5,39.5 h13 v-39 h8 v13 h13 v8 h-13 v18 v8 v13 h-8 v-13 h-13 z" />
+                Data="M0.5,39.5 h13 v-39 h8 v60 h-8 v-13 h-13 z" />
                 <Path Canvas.Left="60" Canvas.Top="96" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
                 Data="M0.5,0.5 h8 v5 h-8 z" />
 
                 <v:TurboPump Canvas.Top="33" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Flip}" IsHitTestVisible="False"/>
                 <v:ScrollPump Canvas.Left="45" Canvas.Top="100" IsHitTestVisible="False" />
                 <v:Arrow Canvas.Left="87" Canvas.Top="116" Direction="Right" />
-                <Canvas Canvas.Left="82" Canvas.Top="8" Width="33" Height="35" Background="Transparent"
-                    v:View.Component="pForeline" AutomationProperties.HelpText="Foreline pressure">
-                    <v:Mks901P Canvas.Left="14" Canvas.Bottom="1" RenderTransform="{DynamicResource Right}" IsHitTestVisible="False" />
-                    <v:Pressure Canvas.Left="0" Canvas.Bottom="18" RenderTransform="{wpf:AnchorTransform BottomLeft}" IsHitTestVisible="False"
+                <v:PortPressureSensor Canvas.Left="64" Canvas.Top="25" Panel.ZIndex="-1" LayoutTransform="{DynamicResource Right}" IsHitTestVisible="False" />
+                <v:Pressure Canvas.Left="84" Canvas.Top="30.5" RenderTransform="{wpf:AnchorTransform MiddleLeft}" IsHitTestVisible="False"
                         Component="pForeline" ContentStringFormat="0.0" />
-                </Canvas>
+                <Rectangle Canvas.Left="68" Canvas.Top="21" Width="49" Height="19" d:Fill="#2200FFFF" Fill="Transparent"
+                    v:View.Component="pForeline" AutomationProperties.HelpText="Foreline pressure" />
 
                 <!--Ambient-->
                 <Grid Canvas.Left="107" Canvas.Top="102.5" Background="Transparent"
@@ -162,13 +167,13 @@
             </Canvas>
 
             <v:Valve Canvas.Left="0" Canvas.Top="0"
-            Component="vIMC_VM" HelpText="IMC-VM valve" />
+            Component="vIM_VM" HelpText="IM-VM valve" />
             <v:Valve Canvas.Left="124" Canvas.Top="0"
             Component="vCT_VM" HelpText="CT-VM valve" />
             <v:Valve Canvas.Left="317" Canvas.Top="0"
-            Component="vGMC_VM" HelpText="GMC-VM valve" />
+            Component="vGM_VM" HelpText="GM-VM valve" />
         </Canvas>
-        <Canvas Width="318" Height="216" Visibility="HIdden">
+        <Canvas Width="318" Height="216" Visibility="Hidden">
 
             <!--Vacuum Manifold-->
             <Canvas Canvas.Left="5" Canvas.Top="127" Height="71" Width="308" Background="Transparent">

@@ -11,7 +11,7 @@
     Background="Transparent"
     >
     <StackPanel>
-        <v:Valve HelpText="LN Supply Valve 1" Component="vLNSupply1" HorizontalAlignment="Right"/>
+        <v:Valve HelpText="LN Supply Valve" Component="vLNSupply" HorizontalAlignment="Right"/>
         <Border DataContext="{Binding RelativeSource={RelativeSource Self}}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1" Background="{DynamicResource FoamBrush}" 
             AutomationProperties.HelpText="LN Manifold"
             v:View.Component="LNManifold">
@@ -31,21 +31,21 @@
                                     <Setter Property="Margin" Value="2"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <v:Valve HelpText="Spare LN Valve 1" Component="vLN_Spare1"/>
-                            <v:Valve HelpText="Spare LN Valve 2" Component="vLN_Spare2"/>
-                            <v:Valve HelpText="Spare LN Valve 3" Component="vLN_Spare3"/>
-                            <v:Valve HelpText="GR1 Coldfinger LN Valve" Component="vLN_GR1"/>
-                            <v:Valve HelpText="GR2 Coldfinger LN Valve" Component="vLN_GR2"/>
-                            <v:Valve HelpText="GR3 Coldfinger LN Valve" Component="vLN_GR3"/>
-                            <v:Valve HelpText="GR4 Coldfinger LN Valve" Component="vLN_GR4"/>
-                            <v:Valve HelpText="GR5 Coldfinger LN Valve" Component="vLN_GR5"/>
-                            <v:Valve HelpText="GR6 Coldfinger LN Valve" Component="vLN_GR6"/>
+                            <v:Valve HelpText="CT LN Valve" Component="vLN_CT"/>
+                            <v:Valve HelpText="VTC LN Valve" Component="vLN_VTC"/>
+                            <v:Valve HelpText="MC LN Valve" Component="vLN_MC"/>
+                            <v:Valve HelpText="GR1 LN Valve" Component="vLN_GR1"/>
+                            <v:Valve HelpText="GR2 LN Valve" Component="vLN_GR2"/>
+                            <v:Valve HelpText="GR3 LN Valve" Component="vLN_GR3"/>
+                            <v:Valve HelpText="GR4 LN Valve" Component="vLN_GR4"/>
+                            <v:Valve HelpText="GR5 LN Valve" Component="vLN_GR5"/>
+                            <v:Valve HelpText="GR6 LN Valve" Component="vLN_GR6"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </Border>
-        <StackPanel Orientation="Horizontal" Margin="0 5 0 0" HorizontalAlignment="Center" AutomationProperties.HelpText="LN overflow sensor temperature" v:View.Component="tLnOverflow"
+        <StackPanel Orientation="Horizontal" Margin="0 5 0 0" HorizontalAlignment="Center" AutomationProperties.HelpText="LN overflow sensor temperature" v:View.Component="tLNOverflow"
                     DataContext="{Binding RelativeSource={RelativeSource Self}}">
             <Label FontSize="10" Padding="0" IsHitTestVisible="False" Content="LN overflow sensor: "/>
             <Label FontSize="10" Padding="0" IsHitTestVisible="False"

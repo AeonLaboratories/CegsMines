@@ -16,7 +16,7 @@
 		<!--Canvas.Right=39-Width=39-22=17 Canvas.Top=6+Height=6+152=158-->
         <Rectangle Style="{DynamicResource FittingShapeStyle}" Width="5" Height="3" Canvas.Left="204" IsHitTestVisible="False"/>
         <Rectangle Style="{DynamicResource FittingShapeStyle}" Width="5" Height="3" Canvas.Left="204" Canvas.Top="88" IsHitTestVisible="False"/>
-        <Path d:Fill="#2200FFFF" Canvas.Right="1" Canvas.Top="3" 
+        <Path d:Fill="#2200FFFF" Fill="Transparent" Canvas.Right="1" Canvas.Top="3" 
               Data="M0,0 h59 v33 h-26 v52 h-33 z" 
               v:View.Component="Section.IM" AutomationProperties.HelpText="Inlet manifold"/>
         <Path Style="{DynamicResource FittingShapeStyle}" Canvas.Right="0" Canvas.Top="2" IsHitTestVisible="False" 
@@ -35,6 +35,6 @@
             BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1"
             wpf:HacsViewProperties.BackgroundResourceKey="{Binding (v:View.Component).Fan.IsOn, RelativeSource={RelativeSource Self}, Converter={x:Static c:BoolToResourceKeyConverter.Default}, FallbackValue=OffBrush}"/>
         <local:IP Canvas.Right="60" Canvas.Top="35" Component="IP1" HelpText="Inlet port 1" />
-        <v:Valve Canvas.Right="60" Canvas.Top="62" Component="vIPX" HelpText="Inlet port external" />
+        <v:Valve Canvas.Right="60" Canvas.Top="62" Component="vIP2_IM" HelpText="Inlet port 2 valve" />
     </Canvas>
 </v:View>

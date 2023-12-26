@@ -3,7 +3,7 @@
   "AlertManager": {
     "Name": "AlertManager",
     "MinutesToSuppressSameMessage": 1440,
-    "PriorAlertMessage": "SwitchBank1.SerialController: No response to command z",
+    "PriorAlertMessage": "SwitchBank1.SerialController: No response to command z"
   },
   "ProcessSequences": {
     "Dead CO2": {
