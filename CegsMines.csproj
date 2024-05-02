@@ -34,6 +34,14 @@
 	  <Content Include="keg.ico" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\WpfControls\WpfControls.ColorPicker\WpfControls.ColorPicker.csproj" />
+	  <ProjectReference Include="..\..\WpfControls\WpfControls.Core\WpfControls.Core.csproj" />
+	  <ProjectReference Include="..\..\WpfControls\WpfControls.NumericUpdown\WpfControls.NumericUpDown.csproj" />
+	  <ProjectReference Include="..\..\WpfControls\WpfControls.Viewport\WpfControls.Viewport.csproj" />
+	  <ProjectReference Include="..\AeonHacs.Core\AeonHacs.Core.csproj" />
+	  <ProjectReference Include="..\AeonHacs.Wpf\AeonHacs.Wpf.csproj" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Reference Include="LJUDDotNet">
 	    <HintPath>Installation\LJUDDotNet.dll</HintPath>
 	  </Reference>
