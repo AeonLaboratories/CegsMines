@@ -1,13 +1,13 @@
 ﻿using AeonHacs.Wpf.Views;
 
-namespace Cegs6x1.Views
+namespace CegsMines.Views
 {
     /// <summary>
     /// Interaction logic for AirManifold.xaml
     /// </summary>
-    public partial class AirManifold : View
+    public partial class AirManifold2 : View
     {
-        public AirManifold()
+        public AirManifold2()
         {
             InitializeComponent();
         }

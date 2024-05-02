@@ -1,4 +1,4 @@
-﻿<v:View x:Class="CegsMines.Views.Split" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<v:View x:Class="CegsMines.Views.d13C" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -7,8 +7,8 @@
     xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
     mc:Ignorable="d"
     Background="{x:Null}">
-    <Canvas Width="61" Height="129">
-        <v:Chamber Component="Section.Split" HelpText="Split section"
-                   Data="M0.5,12.5 h34 M17.5,12.5 v104 h43" />
+    <Canvas Width="35" Height="25">
+        <v:Chamber Component="Section.d13C" HelpText="d13C section"
+                   Data="M0.5,12.5 h34" />
     </Canvas>
 </v:View>

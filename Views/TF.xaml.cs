@@ -5,11 +5,11 @@ using System.Windows;
 namespace CegsMines.Views
 {
     /// <summary>
-    /// Interaction logic for GM.xaml
+    /// Interaction logic for TF.xaml
     /// </summary>
-    public partial class ManifoldHalf : View
+    public partial class TF : View
     {
-        public ManifoldHalf()
+        public TF()
         {
             InitializeComponent();
         }

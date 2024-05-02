@@ -1,12 +1,12 @@
 ﻿using AeonHacs;
+using AeonHacs.Utilities;
 using System;
 using System.Media;
 using System.Windows;
 using System.Windows.Markup;
 using System.Xml;
-using AeonHacs.Utilities;
 
-namespace Cegs6x1
+namespace CegsMines
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,6 +1,6 @@
 ﻿using AeonHacs.Wpf.Views;
 
-namespace Cegs6x1.Views
+namespace CegsMines.Views
 {
     /// <summary>
     /// Interaction logic for Split.xaml

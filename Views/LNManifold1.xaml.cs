@@ -3,11 +3,11 @@
 namespace CegsMines.Views
 {
     /// <summary>
-    /// Interaction logic for VS.xaml
+    /// Interaction logic for LnManifold.xaml
     /// </summary>
-    public partial class VS : View
+    public partial class LNManifold1 : View
     {
-        public VS()
+        public LNManifold1()
         {
             InitializeComponent();
         }

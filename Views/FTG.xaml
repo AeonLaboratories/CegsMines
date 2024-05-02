@@ -1,0 +1,53 @@
+﻿<v:View x:Class="CegsMines.Views.FTG"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CegsMines.Views"
+    xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+    xmlns:wpf="clr-namespace:AeonHacs.Wpf;assembly=AeonHacs.Wpf"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+    <Canvas Width="129" Height="126">
+        <v:FittingHorizontal HorizontalAlignment="Left" Canvas.Top="112" VerticalAlignment="Center" Canvas.Left="-1" />
+        <v:FittingHorizontal HorizontalAlignment="Left" Canvas.Top="112" VerticalAlignment="Center" Canvas.Left="73" />
+        <Path Data="M0.5,0.5 h16 v8 h-8 v8 h-8 z" Style="{DynamicResource FittingShapeStyle}" HorizontalAlignment="Center" Canvas.Left="112" VerticalAlignment="Top" Canvas.Top="34" />
+        <v:CorrugatedTubing Data="M0,62.5 h10 c 14,0 26.5,0 26.5,-30 V0" Height="67" Width="41" Canvas.Left="80" Canvas.Top="54" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1,0" Width="5" Height="3" Canvas.Left="114" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="0,1" Width="3" Height="5" Canvas.Left="78" Canvas.Top="114" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <v:Chamber Component="Section.FTG" HelpText="Flow-through gas"
+            Data="M12.5,29.5 v-17 h52 v17 M38.5,12.5 v17 M38.5,47.5 v69 M21.5,116.5 h34" />
+        <StackPanel Canvas.Left="54" Canvas.Top="29" Width="21" Background="Transparent"
+                    AutomationProperties.HelpText="Oxygen gas supply">
+            <v:Valve HorizontalAlignment="Center"
+                            Component="vO2_FTG" HelpText="O2-FTG valve"/>
+            <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
+            <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
+            <Canvas Width="21" Height="21">
+                <TextBlock Canvas.Left="10.5" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
+                    <Run Text="O" /><Run Typography.Variants="Subscript" Text="2" />
+                </TextBlock>
+            </Canvas>
+        </StackPanel>
+        <StackPanel Canvas.Left="2" Canvas.Top="29" Width="21" Background="Transparent"
+                AutomationProperties.HelpText="Helium gas supply">
+            <v:Valve HorizontalAlignment="Center"
+                    Component="vHe_FTG" HelpText="He-FTG valve"/>
+            <v:Break HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Down}" IsHitTestVisible="False" />
+            <v:Arrow Direction="Up" HorizontalAlignment="Center" Margin="0,3,0,0" IsHitTestVisible="False" />
+            <Canvas Width="21" Height="21">
+                <TextBlock Canvas.Left="10.5" Padding="0" RenderTransform="{wpf:AnchorTransform TopCenter}" IsHitTestVisible="False">
+                    <Run Text="He" />
+                </TextBlock>
+            </Canvas>
+        </StackPanel>
+        <v:Valve
+            Component="vFTG_IP2" HelpText="FTG-IP2 valve" Canvas.Left="55" Canvas.Top="107" VerticalAlignment="Center"/>
+
+        <v:Valve Component="vFtgFlow" HelpText="FTG flow valve" Canvas.Top="29" Canvas.Left="29" HorizontalAlignment="Center">
+            <v:Restriction />
+        </v:Valve>
+        <v:Valve Component="vFTG_TF" HelpText="FTG-TF valve" Canvas.Top="107" Canvas.Left="3" />
+    </Canvas>
+</v:View>

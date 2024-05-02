@@ -1,13 +1,14 @@
 ﻿using AeonHacs.Utilities;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using static AeonHacs.Components.CegsPreferences;
 using static AeonHacs.Utilities.Utility;
 
 namespace AeonHacs.Components
 {
-    public partial class Cegs6x1 : Cegs
+    public partial class CegsMines : Cegs
     {
         #region HacsComponent
 
@@ -18,8 +19,15 @@ namespace AeonHacs.Components
 
             SampleLog = Find<HacsLog>("SampleLog");
 
-            VMPressureLog = Find<DataLog>("VMPressureLog");
-            VMPressureLog.Changed = (col) => col.Resolution > 0 && col.Source is Manometer m ?
+            VM1PressureLog = Find<DataLog>("VM1PressureLog");
+            VM1PressureLog.Changed = (col) => col.Resolution > 0 && col.Source is Manometer m ?
+                (col.PriorValue is double p ?
+                    Manometer.SignificantChange(p, m.Pressure) :
+                    true) :
+                false;
+
+            VM2PressureLog = Find<DataLog>("VM2PressureLog");
+            VM2PressureLog.Changed = (col) => col.Resolution > 0 && col.Source is Manometer m ?
                 (col.PriorValue is double p ?
                     Manometer.SignificantChange(p, m.Pressure) :
                     true) :
@@ -72,7 +80,6 @@ namespace AeonHacs.Components
 
             Power = Find<Power>("Power");
             Ambient = Find<Chamber>("Ambient");
-            VacuumSystem = Find<VacuumSystem>("VacuumSystem");
 
             IM = Find<Section>("IM");
             VTT = Find<Section>("VTT");
@@ -102,12 +109,24 @@ namespace AeonHacs.Components
             CT_VTT = Find<Section>("CT_VTT");
             MC_GM = Find<Section>("MC_GM");
 
+            VS1All = Find<Section>("VS1All");
+            VS2All = Find<Section>("VS2All");
+            CA1 = Find<SableCA10>("CA1");
+            TF1 = Find<SerialTubeFurnace>("TF1");
+
             VTT.Clean = () => Clean(VTT);
+
 
         }
         #endregion HacsComponent
 
         #region System configuration
+        #region Component lists
+        [JsonProperty] public Dictionary<string, TubeFurnace> TubeFurnaces { get; set; }
+        [JsonProperty] public Dictionary<string, SableCA10> Analyzers { get; set; }
+        [JsonProperty] public Dictionary<string, LnScale> LnScales { get; set; }
+        #endregion Component lists
+
         #region HacsComponents
         public DataLog GRSTLog { get; set; }
         public GraphiteReactor GR1;
@@ -125,6 +144,11 @@ namespace AeonHacs.Components
         public virtual ISection IM_CT { get; set; }
         public virtual ISection CT_VTT { get; set; }
         public virtual ISection MC_GM { get; set; }
+        public virtual ISection VS1All { get; set; }
+        public virtual ISection VS2All { get; set; }
+
+        public SableCA10 CA1 { get; set; }
+        public SerialTubeFurnace TF1 { get; set; }
 
         #endregion HacsComponents
         #endregion System configuration
@@ -138,20 +162,21 @@ namespace AeonHacs.Components
             // do not auto-zero pressure gauges while a process is running
             if (Busy) return;
 
-            // ensure baseline VM pressure & steady state
-            if (VacuumSystem.TimeAtBaseline.TotalSeconds < 20)
-                return;
+            bool OkToZeroManometer(ISection section) =>
+                    section is Section s &&
+                    s.VacuumSystem.TimeAtBaseline.TotalSeconds > 20 &&
+                    (s.PathToVacuum?.IsOpened() ?? false);
 
-            if (MC?.PathToVacuum?.IsOpened() ?? false)
+            if (OkToZeroManometer(MC))
                 ZeroIfNeeded(MC?.Manometer, 15);
 
-            if (CT?.PathToVacuum?.IsOpened() ?? false)
+            if (OkToZeroManometer(CT))
                 ZeroIfNeeded(CT?.Manometer, 5);
 
-            if (IM?.PathToVacuum?.IsOpened() ?? false)
+            if (OkToZeroManometer(IM))
                 ZeroIfNeeded(IM?.Manometer, 10);
 
-            if (GM?.PathToVacuum?.IsOpened() ?? false)
+            if (OkToZeroManometer(GM))
             {
                 ZeroIfNeeded(GM?.Manometer, 10);
                 foreach (var gr in GraphiteReactors)
@@ -209,7 +234,7 @@ namespace AeonHacs.Components
             ProcessDictionary["Evacuate and Freeze VTT"] = FreezeVtt;
             ProcessDictionary["Clean VTT"] = CleanVtt;
             ProcessDictionary["Admit Dead CO2 into MC"] = AdmitDeadCO2;
-            ProcessDictionary["Purify CO2 in MC"] = CleanupCO2InMC;            
+            ProcessDictionary["Purify CO2 in MC"] = CleanupCO2InMC;
             ProcessDictionary["Discard MC gases"] = DiscardMCGases;
             ProcessDictionary["Divide sample into aliquots"] = DivideAliquots;
             ProcessDictionary["Wait for operator"] = WaitForOperator;
@@ -227,8 +252,8 @@ namespace AeonHacs.Components
             ProcessDictionary["Close all Opened valves"] = CloseAllValves;
             ProcessDictionary["Exercise all LN Manifold valves"] = ExerciseLNValves;
             ProcessDictionary["Calibrate all multi-turn valves"] = CalibrateRS232Valves;
-            ProcessDictionary["Measure MC volume (KV in MCP2)"] = MeasureVolumeMC;
-            ProcessDictionary["Measure valve volumes (plug in MCP2)"] = MeasureValveVolumes;
+            ProcessDictionary["Measure MC volume (KV in MCP1)"] = MeasureVolumeMC;
+            ProcessDictionary["Measure valve volumes (plug in MCP1)"] = MeasureValveVolumes;
             ProcessDictionary["Measure remaining chamber volumes"] = MeasureRemainingVolumes;
             ProcessDictionary["Check GR H2 density ratios"] = CalibrateGRH2;
             ProcessDictionary["Measure Extraction efficiency"] = MeasureExtractEfficiency;
@@ -240,93 +265,32 @@ namespace AeonHacs.Components
 
         protected virtual void CleanVtt() => VTT.Clean();
 
-        protected override void OpenLine()
+        protected virtual void CloseGasSupplies()
         {
-            ProcessStep.Start("Open line");
-
             ProcessSubStep.Start("Close gas supplies");
+            bool isCegsGasSupply(GasSupply gs) =>
+                VacuumSystems.ContainsValue(gs.Destination.VacuumSystem);
+
             foreach (GasSupply g in GasSupplies.Values)
             {
-                if (g.Destination.VacuumSystem == VacuumSystem)
+                // Look only in CEGS vacuum systems; ignore other process managers
+                if (isCegsGasSupply(g))
                     g.ShutOff();
             }
 
             // close gas flow valves after all shutoff valves are closed
             foreach (GasSupply g in GasSupplies.Values)
             {
-                if (g.Destination.VacuumSystem == VacuumSystem)
+                if (isCegsGasSupply(g))
                     g.FlowValve?.CloseWait();
             }
 
             ProcessSubStep.End();
 
-            Evacuate(OkPressure);
-
-            Clean(VTT);
-            Clean(CT);
-
-            var gmWasOpened = GM.IsOpened && PreparedGRsAreOpened();
-            var mcWasOpened = MC_Split.IsOpened && MC.Ports.All(p => p.IsOpened);
-            var ctWasOpened = CT_VTT.IsOpened;
-            var imWasOpened = IM.IsOpened;
-
-            if (gmWasOpened && mcWasOpened && ctWasOpened && imWasOpened && IM_CT.IsOpened && VTT_MC.IsOpened)
-            {
-                Evacuate();
-                ProcessStep.End();
-                return;
-            }
-
-            if (!mcWasOpened)
-            {
-                ProcessSubStep.Start($"Evacuate {MC_Split.Name}");
-                VacuumSystem.IsolateManifold();
-                MC_Split.OpenAndEvacuateAll(OkPressure);        // include MC aliquot ports
-                ProcessSubStep.End();
-            }
-
-            if (!gmWasOpened)
-            {
-                ProcessSubStep.Start($"Evacuate {GM.Name} and prepared GRs");
-                VacuumSystem.IsolateManifold();
-                GM.Isolate();
-                OpenPreparedGRs();
-                GM.OpenAndEvacuate(OkPressure);
-                ProcessSubStep.End();
-            }
-            else
-            {
-                GM.InternalValves.Open(); // ensure GM internal valves are open in case MC evacuation closed them.
-            }
-
-            if (!ctWasOpened)
-            {
-                ProcessSubStep.Start($"Evacuate {CT_VTT.Name}");
-                VacuumSystem.IsolateManifold();
-                CT_VTT.OpenAndEvacuate(OkPressure);
-                ProcessSubStep.End();
-            }
-
-            if (!imWasOpened)
-            {
-                ProcessSubStep.Start($"Evacuate {IM.Name}");
-                VacuumSystem.IsolateManifold();
-                IM.OpenAndEvacuate(OkPressure);
-                ProcessSubStep.End();
-            }
-
-            ProcessSubStep.Start($"Join and Evacuate all sections");
-            OpenPreparedGRs();
-            MC.PathToVacuum?.Open();     // Opens GM, too; avoid closing GR ports
-            VTT.PathToVacuum?.Open();
-            IM.PathToVacuum?.Open();
-            IM_CT.Open();
-            VTT_MC.Open();
-            ProcessSubStep.End();
-
-            ProcessStep.End();
         }
 
+        protected override void OpenLine() =>
+            FastOpenLine();
 
         // TODO: this is too slow and lossy to be practical
         // Instead, transfer the CO2 from the MC to a valved vessel
@@ -350,7 +314,7 @@ namespace AeonHacs.Components
             im.OpenAndEvacuate();
             Split.OpenAndEvacuate();
             im.PathToVacuum.Open();
-            WaitForStablePressure(CleanPressure);
+            WaitForStablePressure(im.VacuumSystem, CleanPressure);
             InletPort.Close();
             ProcessStep.End();
 
@@ -363,7 +327,7 @@ namespace AeonHacs.Components
             WaitFor(() => mc.Temperature > CO2TransferStartTemperature);
             ProcessSubStep.End();
 
-            VacuumSystem.Isolate();
+            im.VacuumSystem.Isolate();
             MC_Split.Open();
             WaitSeconds(3);
             InletPort.Open();
@@ -427,15 +391,6 @@ namespace AeonHacs.Components
             v.ActuatorOperations.Remove(op);
         }
 
-        protected override void MeasureRemainingVolumes()
-        {
-            Find<VolumeCalibration>("MCP1, MCP2").Calibrate();
-            Find<VolumeCalibration>("Split").Calibrate();
-            Find<VolumeCalibration>("GM").Calibrate();
-            Find<VolumeCalibration>("VTT, CT, IM").Calibrate();
-            Find<VolumeCalibration>("VM").Calibrate();
-        }
-
         void TestPort(IPort p)
         {
             for (int i = 0; i < 5; ++i)
@@ -484,20 +439,13 @@ namespace AeonHacs.Components
 
         protected virtual void FastOpenLine()
         {
-            CloseAllGRs();
-            VacuumSystem.Isolate();
-            IM.Open();
-            GM.Open();
-
-            IM_CT.Open();
-            CT_VTT.Open();
-            VTT_MC.Open();
-            MC.OpenPorts();
-            MC_GM.Open();
-            MC.PathToVacuum?.Open();     // Opens GM, too
-            VTT.PathToVacuum?.Open();
-            IM.PathToVacuum?.Open();
-            VacuumSystem.Evacuate();
+            CloseGasSupplies();
+            if (!VS1All.IsOpened || !VS1All.PathToVacuum.IsOpened())
+                VS1All.OpenAndEvacuate();
+            if (!VS2All.IsOpened || !VS2All.PathToVacuum.IsOpened())
+                VS2All.OpenAndEvacuate();
+            WaitFor(() => VS1All.VacuumSystem.Pressure <= OkPressure && VS2All.VacuumSystem.Pressure <= OkPressure);
+            Section.Connections(VS1All, VS2All).Open();
         }
 
         protected void CalibrateManualHeaters()
@@ -524,7 +472,7 @@ namespace AeonHacs.Components
             gs?.Destination?.ClosePorts();
             gs?.Admit(pressure);
             WaitSeconds(10);
-            EventLog.Record($"Admit test: {gasSupply}, target: {pressure:0.###}, stabilized: {gs.Meter.Value:0.###} in {ProcessStep.Elapsed:m':'ss}");
+            SampleLog.Record($"Admit test: {gasSupply}, target: {pressure:0.###}, stabilized: {gs.Meter.Value:0.###} in {ProcessStep.Elapsed:m':'ss}");
             gs?.Destination?.OpenAndEvacuate();
         }
 
@@ -535,52 +483,130 @@ namespace AeonHacs.Components
             gs?.Destination?.ClosePorts();
             gs?.Pressurize(pressure);
             WaitSeconds(60);
-            EventLog.Record($"Pressurize test: {gasSupply}, target: {pressure:0.###}, stabilized: {gs.Meter.Value:0.###} in {ProcessStep.Elapsed:m':'ss}");
+            SampleLog.Record($"Pressurize test: {gasSupply}, target: {pressure:0.###}, stabilized: {gs.Meter.Value:0.###} in {ProcessStep.Elapsed:m':'ss}");
             gs?.Destination?.OpenAndEvacuate();
         }
 
         protected virtual void TestGasSupplies()
+
         {
-            //TestAdmit("O2.IML", IMO2Pressure);
+            TestAdmit("O2.IM", IMO2Pressure);
             TestPressurize("CO2.MC", 75);
-            //TestPressurize("CO2.MC", 1000);
-            //TestPressurize("He.IMR", 800);
-            //TestPressurize("He.MC", 80);
-            //TestPressurize("He.GML", 800);
-            //TestAdmit("He.GM", 760);
-            //TestPressurize("H2.GMR", 100);
-            //TestPressurize("H2.GMR", 900);
+            TestPressurize("CO2.MC", 0.95 * MicrogramsCarbon(MC.Manometer.MaxValue, MC.MilliLiters, MC.Temperature));
+            TestAdmit("He.IM", 800);
+            TestPressurize("He.MC", 80);
+            TestPressurize("He.AM", PressureOverAtm);
+            TestAdmit("He.GM", 760);
+            TestPressurize("H2.GM", 100);
+            TestPressurize("H2.GM", 900);
         }
+
+        public void VttWarmStepTest()
+        {
+            if (Find<VTColdfinger>("VTC") is not VTColdfinger vtc)
+                return;
+            if (vtc.Heater is not IHeater h)
+                return;
+
+            // Replace VTC heater with dummy so we can manually control the real heater.
+            vtc.Heater = new HC6Heater();
+
+            double initialCO = 0.1;
+            double stepCO = 0.3;
+
+            h.Setpoint = 50;
+            h.Manual(initialCO);
+            h.TurnOn();
+
+            WaitMinutes(60); // Wait for temperature to stabalize.
+
+            var log = new DataLog($"VttWarm Step Test.txt")
+            {
+                Columns = new()
+                {
+                    new DataLog.Column()
+                    {
+                        Name = "tVTC",
+                        Resolution = -1.0,
+                        Format = "0.00"
+                    },
+                    new DataLog.Column()
+                    {
+                        Name = vtc.TopThermometer.Name,
+                        Resolution = -1.0,
+                        Format = "0.00"
+                    },
+                    new DataLog.Column()
+                    {
+                        Name = vtc.WireThermometer.Name,
+                        Resolution = -1.0,
+                        Format = "0.00"
+                    }
+                },
+                ChangeTimeoutMilliseconds = 3 * 1000,
+                OnlyLogWhenChanged = false,
+                InsertLatestSkippedEntry = false
+            };
+
+            HacsLog.List.Add(log);
+
+            h.PowerLevel = stepCO;
+
+            WaitMinutes(40);
+
+            HacsLog.List.Remove(log);
+            log.Close();
+            log = null;
+
+            h.TurnOff();
+            h.Auto();
+            vtc.Heater = h;
+        }
+
 
         protected override void Test()
         {
-            //var grs = new List<IHeater>()
-            //{
-            //    Find<IHeater>("hGR1"),
-            //    Find<IHeater>("hGR3"),
-            //    Find<IHeater>("hGR5"),
-            //    Find<IHeater>("hGR7"),
-            //    Find<IHeater>("hGR9"),
-            //    Find<IHeater>("hGR11")
-            //}.ToArray();
-            //PidStepTest(grs);
+            //Find<IVolumeCalibration>("CT1, CT2, CTF, IM").Calibrate();
+            ////Find<IVolumeCalibration>("VM1").Calibrate();
+            //return;
+
+            var tc = Find<IThermocouple>("tCal");
+            //CalibrateManualHeater(Find<IHeater>("hIP1CCQ"), tc);
+            //CalibrateManualHeater(Find<IHeater>("hIP2CCQ"), tc);
+
+            //CalibrateManualHeaters();
+            //return;
 
             //var ips = new List<IInletPort>()
             //{
-            //    Find<IInletPort>("IP7"),
-            //    Find<IInletPort>("IP9"),
-            //    Find<IInletPort>("IP11")
+            //    Find<IInletPort>("IP2")
             //};
             //ips.ForEach(ip => ip.QuartzFurnace.TurnOn());
             //WaitMinutes(10);
             //PidStepTest(ips.Select(ip => ip.SampleFurnace).Cast<IHeater>().ToArray());
             //ips.ForEach(ip => ip.QuartzFurnace.TurnOff());
+            //return;
 
-            //CalibrateManualHeaters();
-            //var gs = Find<IGasSupply>("He.GM");
-            //gs?.Pressurize(760);
+            //var grs = new List<IHeater>()
+            //{
+            //    Find<IHeater>("hGR2"),
+            //    Find<IHeater>("hGR4"),
+            //    Find<IHeater>("hGR6"),
+            //    //Find<IHeater>("hGR7"),
+            //    //Find<IHeater>("hGR9"),
+            //    //Find<IHeater>("hGR11")
+            //}.ToArray();
+            //PidStepTest(grs);
+            //return;
+
+            //VttWarmStepTest();
+            //return;
+
+
+            //TestPressurize("CO2.MC", 0.99 * MicrogramsCarbon(MC.Manometer.MaxValue, MC.MilliLiters, MC.Temperature));
             //TestGasSupplies();
             //return;
+
 
             //FastOpenLine();
             //for (int i = 0; i < 100; ++i)
@@ -719,15 +745,15 @@ namespace AeonHacs.Components
             // Test CTFlowManager
             // Control flow valve to maintain constant downstream pressure until flow valve is fully opened.
             //SampleLog.Record($"Bleed pressure: {FirstTrapBleedPressure} Torr");
-            Bleed(FirstTrap, FirstTrapBleedPressure);
+            //Bleed(FirstTrap, FirstTrapBleedPressure);
 
             // Open flow bypass when conditions allow it without producing an excessive
             // downstream pressure spike. Then wait for the spike to be evacuated.
-            ProcessSubStep.Start("Wait for remaining pressure to bleed down");
-            WaitFor(() => IM.Pressure - FirstTrap.Pressure < FirstTrapFlowBypassPressure);
-            FirstTrap.Open();   // open bypass if available
-            WaitFor(() => FirstTrap.Pressure < FirstTrapEndPressure);
-            ProcessSubStep.End();
+            //ProcessSubStep.Start("Wait for remaining pressure to bleed down");
+            //WaitFor(() => IM.Pressure - FirstTrap.Pressure < FirstTrapFlowBypassPressure);
+            //FirstTrap.Open();   // open bypass if available
+            //WaitFor(() => FirstTrap.Pressure < FirstTrapEndPressure);
+            //ProcessSubStep.End();
 
 
             //VolumeCalibrations["GR1, GR2"]?.Calibrate();

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Cegs6x1.Views
+namespace CegsMines.Views
 {
     /// <summary>
     /// Interaction logic for MCVertical.xaml

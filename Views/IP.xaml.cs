@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace Cegs6x1.Views
+namespace CegsMines.Views
 {
     /// <summary>
     /// Interaction logic for IP.xaml

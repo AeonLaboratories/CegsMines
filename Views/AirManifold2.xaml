@@ -1,0 +1,30 @@
+﻿<v:View x:Class="CegsMines.Views.AirManifold2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CegsMines.Views"
+        xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+        mc:Ignorable="d">
+    <Border Background="Transparent" AutomationProperties.HelpText="Air Solenoid Manifolds">
+        <StackPanel>
+            <Label Content="Air Manifold 2" HorizontalAlignment="Center" FontSize="10" Margin="0, 10, 0, 0" Padding="0" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type v:Valve}">
+                        <Setter Property="Margin" Value="2" />
+                    </Style>
+                </StackPanel.Resources>
+                <v:Valve HelpText="GR4 Coldfinger Air Valve" Component="vAir_GR4" />
+                <v:Valve HelpText="GR5 Coldfinger Air Valve" Component="vAir_GR5" />
+                <v:Valve HelpText="GR6 Coldfinger Air Valve" Component="vAir_GR6" />
+                <v:Valve HelpText="AP6 Coldfinger Air Valve" Component="vAir_AP6" />
+                <v:Valve HelpText="AP5 Coldfinger Air Valve" Component="vAir_AP5" />
+                <v:Valve HelpText="AP4 Coldfinger Air Valve" Component="vAir_AP4" />
+                <v:Valve HelpText="AP3 Coldfinger Air Valve" Component="vAir_AP3" />
+                <v:Valve HelpText="AP2 Coldfinger Air Valve" Component="vAir_AP2" />
+                <v:Valve HelpText="AP1 Coldfinger Air Valve" Component="vAir_AP1" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</v:View>

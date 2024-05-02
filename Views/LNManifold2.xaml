@@ -1,0 +1,49 @@
+﻿<v:View x:Class="CegsMines.Views.LNManifold2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CegsMines.Views"
+    xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+    xmlns:c="clr-namespace:AeonHacs.Wpf.Converters;assembly=AeonHacs.Wpf"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d" 
+    Background="Transparent"
+    >
+    <StackPanel>
+        <v:Valve HelpText="LN Supply Valve 2" Component="vLNSupply2" HorizontalAlignment="Right"/>
+        <Border DataContext="{Binding RelativeSource={RelativeSource Self}}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1" Background="{DynamicResource FoamBrush}" 
+            AutomationProperties.HelpText="LN Manifold 2"
+            v:View.Component="LNManifold2">
+            <StackPanel>
+                <Grid>
+                    <v:FTC Component="{Binding (v:View.Component).LevelSensor}" IsHitTestVisible="False" />
+                    <Label Padding="0,0,8,0" HorizontalAlignment="Right"
+                        AutomationProperties.HelpText="LN Manifold 2 Level Sensor"
+                        Content="{Binding (v:View.Component).LevelSensor.Temperature, FallbackValue='-- °C'}" 
+                        ContentStringFormat="0 °C"
+                        />
+                    <StackPanel Margin="10,10,10,10">
+                        <Label Content="LN Manifold 2" HorizontalContentAlignment="Center" FontSize="10" Margin="0,10,0,10" Padding="0" IsHitTestVisible="False" />
+                        <StackPanel Orientation="Horizontal" Canvas.Left="10" Canvas.Bottom="10" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type v:Valve}">
+                                    <Setter Property="Margin" Value="2"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <v:Valve HelpText="GR4 Coldfinger LN Valve" Component="vLN_GR4"/>
+                            <v:Valve HelpText="GR5 Coldfinger LN Valve" Component="vLN_GR5"/>
+                            <v:Valve HelpText="GR6 Coldfinger LN Valve" Component="vLN_GR6"/>
+                            <v:Valve HelpText="AP6 LN Valve" Component="vLN_AP6"/>
+                            <v:Valve HelpText="AP5 LN Valve" Component="vLN_AP5"/>
+                            <v:Valve HelpText="AP4 LN Valve" Component="vLN_AP4"/>
+                            <v:Valve HelpText="AP3 LN Valve" Component="vLN_AP3"/>
+                            <v:Valve HelpText="AP2 LN Valve" Component="vLN_AP2"/>
+                            <v:Valve HelpText="AP1 LN Valve" Component="vLN_AP1"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</v:View>

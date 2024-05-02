@@ -1,9 +1,9 @@
-﻿<v:View x:Class="Cegs6x1.Views.LNManifold"
+﻿<v:View x:Class="CegsMines.Views.LNManifold1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:Cegs6x1.Views"
+    xmlns:local="clr-namespace:CegsMines.Views"
     xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
     xmlns:c="clr-namespace:AeonHacs.Wpf.Converters;assembly=AeonHacs.Wpf"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -11,46 +11,39 @@
     Background="Transparent"
     >
     <StackPanel>
-        <v:Valve HelpText="LN Supply Valve" Component="vLNSupply" HorizontalAlignment="Right"/>
+        <v:Valve HelpText="LN Supply Valve 1" Component="vLNSupply1" HorizontalAlignment="Right"/>
         <Border DataContext="{Binding RelativeSource={RelativeSource Self}}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1" Background="{DynamicResource FoamBrush}" 
-            AutomationProperties.HelpText="LN Manifold"
-            v:View.Component="LNManifold">
+            AutomationProperties.HelpText="LN Manifold 1"
+            v:View.Component="LNManifold1">
             <StackPanel>
                 <Grid>
                     <v:FTC Component="{Binding (v:View.Component).LevelSensor}" IsHitTestVisible="False" />
                     <Label Padding="0,0,8,0" HorizontalAlignment="Right"
-                        AutomationProperties.HelpText="LN Manifold Level Sensor"
+                        AutomationProperties.HelpText="LN Manifold 1 Level Sensor"
                         Content="{Binding (v:View.Component).LevelSensor.Temperature, FallbackValue='-- °C'}" 
                         ContentStringFormat="0 °C"
                         />
                     <StackPanel Margin="10,10,10,10">
-                        <Label Content="LN Manifold" HorizontalContentAlignment="Center" FontSize="10" Margin="0,10,0,10" Padding="0" IsHitTestVisible="False" />
+                        <Label Content="LN Manifold 1" HorizontalContentAlignment="Center" FontSize="10" Margin="0,10,0,10" Padding="0" IsHitTestVisible="False" />
                         <StackPanel Orientation="Horizontal" Canvas.Left="10" Canvas.Bottom="10" HorizontalAlignment="Center">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type v:Valve}">
                                     <Setter Property="Margin" Value="2"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <v:Valve HelpText="CT LN Valve" Component="vLN_CT"/>
+                            <v:Valve HelpText="CT1 LN Valve" Component="vLN_CT1"/>
+                            <v:Valve HelpText="CT2 LN Valve" Component="vLN_CT2"/>
+                            <v:Valve HelpText="Spare LN Valve 1" Component="vLN_Spare1"/>
+                            <v:Valve HelpText="Spare LN Valve 2" Component="vLN_Spare2"/>
                             <v:Valve HelpText="VTC LN Valve" Component="vLN_VTC"/>
-                            <v:Valve HelpText="MC LN Valve" Component="vLN_MC"/>
-                            <v:Valve HelpText="GR1 LN Valve" Component="vLN_GR1"/>
-                            <v:Valve HelpText="GR2 LN Valve" Component="vLN_GR2"/>
-                            <v:Valve HelpText="GR3 LN Valve" Component="vLN_GR3"/>
-                            <v:Valve HelpText="GR4 LN Valve" Component="vLN_GR4"/>
-                            <v:Valve HelpText="GR5 LN Valve" Component="vLN_GR5"/>
-                            <v:Valve HelpText="GR6 LN Valve" Component="vLN_GR6"/>
+                            <v:Valve HelpText="GR1 Coldfinger LN Valve" Component="vLN_GR1"/>
+                            <v:Valve HelpText="GR2 Coldfinger LN Valve" Component="vLN_GR2"/>
+                            <v:Valve HelpText="GR3 Coldfinger LN Valve" Component="vLN_GR3"/>
+                            <v:Valve HelpText="MC Coldfinger LN Valve" Component="vLN_MC"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </Border>
-        <StackPanel Orientation="Horizontal" Margin="0 5 0 0" HorizontalAlignment="Center" AutomationProperties.HelpText="LN overflow sensor temperature" v:View.Component="tLNOverflow"
-                    DataContext="{Binding RelativeSource={RelativeSource Self}}">
-            <Label FontSize="10" Padding="0" IsHitTestVisible="False" Content="LN overflow sensor: "/>
-            <Label FontSize="10" Padding="0" IsHitTestVisible="False"
-                   Content="{Binding (v:View.Component).Temperature, FallbackValue='-- °C'}"
-                   ContentStringFormat="0 °C"/>
-        </StackPanel>
     </StackPanel>
 </v:View>

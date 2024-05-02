@@ -1,7 +1,7 @@
 ﻿using AeonHacs.Wpf.Views;
 using System.Windows;
 
-namespace Cegs6x1.Views
+namespace CegsMines.Views
 {
     /// <summary>
     /// Interaction logic for GM.xaml

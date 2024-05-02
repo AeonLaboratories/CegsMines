@@ -5,9 +5,9 @@ namespace CegsMines.Views
     /// <summary>
     /// Interaction logic for VS.xaml
     /// </summary>
-    public partial class VS : View
+    public partial class VS2 : View
     {
-        public VS()
+        public VS2()
         {
             InitializeComponent();
         }

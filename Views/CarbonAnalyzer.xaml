@@ -1,0 +1,35 @@
+﻿<v:View x:Class="CegsMines.Views.CarbonAnalyzer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CegsMines.Views"
+    xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+    <Canvas Width="84" Height="95">
+        <Rectangle Fill="#42538B" Height="45" HorizontalAlignment="Center" VerticalAlignment="Top" Width="84" />
+        <Rectangle Fill="#E8E2DF" Width="82" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Canvas.Top="20" Canvas.Left="1"/>
+        <v:CustomGauge Canvas.Left="25" Canvas.Top="24" Width="56"
+                       Component="CA1" DisplayMemberPath="CO2Ppm" ContentStringFormat="0.0"
+                       d:Content="0.0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <Rectangle Fill="Black" Opacity="0.5" Width="17" Height="7" Canvas.Left="5" Canvas.Top="29" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Ellipse Width="5" Height="5" Stroke="Black" Fill="{DynamicResource BodyBrush}" Canvas.Left="7" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Ellipse Width="5" Height="5" Stroke="Black" Fill="{DynamicResource BodyBrush}" Canvas.Left="15" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <v:CorrugatedTubing Data="M4.5,0 v33" Width="22" Height="38" Canvas.Left="5" Canvas.Top="35" HorizontalAlignment="Center" VerticalAlignment="Top" IsHitTestVisible="False"/>
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1,0" Width="5" Height="4" Canvas.Left="7" Canvas.Top="32" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1,0" Width="5" Height="4" Canvas.Left="7" Canvas.Top="68" />
+
+        <v:CorrugatedTubing Data="M4.5,0 v2 c 0,30 44,5 44,30 v1" Width="53" Height="38" Canvas.Left="13" Canvas.Top="35" HorizontalAlignment="Left" VerticalAlignment="Center" IsHitTestVisible="False"/>
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1,0" Width="5" Height="4" Canvas.Left="15" Canvas.Top="32" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Border Background="{DynamicResource BodyBrush}" BorderBrush="{DynamicResource EdgeBrush}" BorderThickness="1,0" Width="5" Height="4" Canvas.Left="59" Canvas.Top="68" />
+
+        <Rectangle Style="{DynamicResource FittingShapeStyle}" Width="9" Height="5" Canvas.Left="5" Canvas.Top="72" />
+        <Rectangle Style="{DynamicResource FittingShapeStyle}" Width="9" Height="5" Canvas.Left="57" Canvas.Top="72" />
+
+        <v:Valve Component="vIM_CA" Canvas.Top="76" HorizontalAlignment="Center" />
+        <v:Valve Component="vCA_CTF" Canvas.Left="52" Canvas.Top="76" HorizontalAlignment="Center" />
+    </Canvas>
+</v:View>

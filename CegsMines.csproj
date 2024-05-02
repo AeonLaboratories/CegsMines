@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Title>Aeon Laboratories Application for Aeon's CEGS6x1</Title>
+		<Title>Aeon Laboratories Application for Aeon's CegsMines</Title>
 		<Description>HACS-based Carbon Extraction and Graphitization System</Description>
         <Company>Aeon Laboratories</Company>
         <Authors>Jim Wilson, Tyler Wilson</Authors>
         <Copyright>$(Company), 2022</Copyright>
-        <AssemblyName>Cegs6x1</AssemblyName>
-		<RepositoryUrl>https://github.com/AeonLaboratories/Cegs6x1</RepositoryUrl>
+        <AssemblyName>CegsMines</AssemblyName>
+		<RepositoryUrl>https://github.com/AeonLaboratories/CegsMines</RepositoryUrl>
 		<Version>1.0.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
@@ -34,14 +34,6 @@
 	  <Content Include="keg.ico" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="AeonHacs.Core" Version="3.1.1" />
-	  <PackageReference Include="AeonHacs.Wpf" Version="3.1.1" />
-	  <PackageReference Include="WpfControls.Core" Version="1.0.0" />
-	  <PackageReference Include="WpfControls.Viewport" Version="1.0.0" />
-	  <PackageReference Include="WpfControls.NumericUpdown" Version="1.0.0" />
-	  <PackageReference Include="WpfControls.ColorPicker" Version="1.0.0" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Reference Include="LJUDDotNet">
 	    <HintPath>Installation\LJUDDotNet.dll</HintPath>
 	  </Reference>
@@ -54,7 +46,7 @@
 		</None>-->
 		<None Update="Installation\settings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
+			<TargetPath>%(Filename).installation%(Extension)</TargetPath>
 		</None>
 		<None Update="Installation\Credentials.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

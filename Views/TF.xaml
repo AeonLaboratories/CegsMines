@@ -1,0 +1,39 @@
+﻿<v:View x:Class="CegsMines.Views.TF"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CegsMines.Views"
+    xmlns:v="clr-namespace:AeonHacs.Wpf.Views;assembly=AeonHacs.Wpf"
+    xmlns:wpf="clr-namespace:AeonHacs.Wpf;assembly=AeonHacs.Wpf"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+    <Canvas Width="224" Height="195">
+        <!--<Canvas Width="148" Height="185" Background="{DynamicResource FittingGrid}" Canvas.Left="-18" Canvas.Top="-18"/>-->
+        <v:CorrugatedTubing Data="M0,3.5 C 26,3.5 36.5,6 36.5,40" Height="40" Width="44" HorizontalAlignment="Left" Canvas.Left="230" VerticalAlignment="Center" Canvas.Top="61" />
+        <Border BorderThickness="0,1" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="3" Height="5" Canvas.Left="228" Canvas.Top="62" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Border BorderThickness="1,0" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="5" Height="3" Canvas.Left="264" Canvas.Top="101" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <v:CorrugatedTubing Data="M17.5,72 c 0,-37 -16,-67.5 22.5,-67.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="74" Width="36" Canvas.Left="93" Canvas.Top="8" />
+        <Border BorderThickness="0,1" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="3" Height="5" Canvas.Left="133" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Border BorderThickness="1,0" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="5" Height="3" Canvas.Left="108" Canvas.Top="79" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <v:CorrugatedTubing Data="M3.5,0 v95.5 c 0,15 10,25 25,25 h115.5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="124" Width="144" Canvas.Left="3" Canvas.Top="100" />
+        <Border BorderThickness="0,1" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="3" Height="5" Canvas.Left="146" Canvas.Top="218" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Border BorderThickness="1,0" BorderBrush="{DynamicResource EdgeBrush}" Background="{DynamicResource BodyBrush}" Width="5" Height="3" Canvas.Left="4" Canvas.Top="98" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+        <local:TubeFurnace Component="TF1" Canvas.Top="65" VerticalAlignment="Center" Canvas.Left="1" />
+
+        <v:Chamber Component="Section.TF"
+            Data="M38.5,0.5 v29 M12.5,12.5 h52 v17 M38.5,47.5 v17 h43 M64.5,47.5 v17" HorizontalAlignment="Left" Canvas.Left="124" VerticalAlignment="Center" />
+        <v:FittingHorizontal HorizontalAlignment="Left" Canvas.Left="223" VerticalAlignment="Center" Height="8" Canvas.Top="60" />
+        <Path Data="M0.5,0.5 h8 v8 h8 v8 h-16 z" Style="{DynamicResource FittingShapeStyle}" Canvas.Left="262" Canvas.Top="104" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <v:Mks722BLowPressure Component="pTF" HelpText="TF pressure sensor" Canvas.Left="157" Canvas.Top="-26" VerticalAlignment="Center" />
+        <v:Pressure Component="pTF" HelpText="TF pressure" Canvas.Left="162.5" Canvas.Top="-30" RenderTransform="{wpf:AnchorTransform BottomCenter}" ContentStringFormat="0.0"/>
+        <v:Valve Component="vTFFlow" HelpText="TF flow valve" Canvas.Top="29" Canvas.Left="153" VerticalAlignment="Center" >
+            <v:Restriction />
+        </v:Valve>
+        <v:Valve Component="vTFBypass" HelpText="TF bypass valve" Canvas.Top="29" Canvas.Left="179" VerticalAlignment="Center" />
+        <v:Valve Component="vTF_IP1" HelpText="TF-IP1 valve" Canvas.Left="205" Canvas.Top="55" VerticalAlignment="Center" />
+    </Canvas>
+</v:View>
